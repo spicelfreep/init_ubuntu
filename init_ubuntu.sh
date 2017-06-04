@@ -10,7 +10,7 @@ fi
 ### Step 0: Confirm which software you want to install ###
 echo "-----------------------------------------------"
 echo " Step 0: Confirm which software you want to install" 
-echo " If you have any problem on downloading file, you can put your file in ~/Downloads manually, for example, you can cp Anaconda3-4.3.1-Linux-x86_64.sh to ~/Downloads "
+echo " TODO"
 
 ### Step 1: Basic application install ###
 echo "-----------------------------------------------"
@@ -70,6 +70,17 @@ function lantern(){
 	sudo dpkg -i  lantern-installer-64-bit.deb
 }
 
+# install hosts
+function hosts(){
+	cd ~
+	git clone https://github.com/racaljk/hosts.git
+	sudo cat ./hosts/hosts >> /etc/hosts
+	rm -rf ./hosts/
+}
+
+function sublime(){
+	#TODO
+}
 
 # Gitbook
 function gitbook(){
@@ -138,15 +149,31 @@ function tensorflow_cpu_anaconda(){
 	sudo  pip install --ignore-installed --upgrade https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-1.1.0-cp36-cp36m-linux_x86_64.whl
 }
 
+function flash(){
+	apt-get -y install flashplugin-nonfree 
+	update-flashplugin-nonfree --install 
+}
+
+function python(){
+	#TODO
+}
+
+function other_tools(){
+	apt-get -y install tree
+	apt-get -y install unrar unzip
+}
 
 ### --------------------------------------------- ###
 lantern
+hosts
+other_tools
 gitbook
 jekyll
 typora
 docker
 anaconda
-tensorflow_cpu
+tensorflow_cpu_anaconda
+flash
 ### --------------------------------------------- ###
 echo "Step 3 : Personal software installation"
 function sysu_iarc(){
