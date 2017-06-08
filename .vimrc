@@ -34,6 +34,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'Lokaltog/vim-powerline'
 Plugin 'bling/vim-airline'
 set laststatus=2
+set nu
 Plugin 'fholgado/minibufexpl.vim'
 let g:miniBufExplMapWindowNavVim = 1  
 let g:miniBufExplMapWindowNavArrows = 1   
