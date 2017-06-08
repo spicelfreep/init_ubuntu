@@ -1,7 +1,7 @@
 #!/bin/bash
 # author : Jackie.xiao
 # description : init your ubuntu 16.04 
-# Usege : you should run as "sudo bash init_ubuntu.sh | tee init_ubuntu.log"
+# Usege : you should run in your own user (not in root for convenient) as "sudo bash init_ubuntu.sh | tee init_ubuntu.log"
 
 set -o nounset # avoid quote variable which not defined
 #set -o errexit # ignore command line which fail
@@ -12,22 +12,17 @@ then
 	exit 1
 fi
 
+### general setting ###
 cd ~
 homedir=`pwd`
 username=`whoami`
-
-### Step 0: Confirm which software you want to install ###
-echo -e "\033[44;37;5m-----Step 0: Confirm which software you want to install ------------\033[0m" 
-echo " TODO"
-
-### Step 1: Basic application install ###
-echo -e "\033[44;37;5m-----Step 1: Basic applicaiton installi------------\033[0m"
-echo "apt-get update......"
-sudo apt-get -y update > /dev/null #update apt source 
-echo "apt-get upgrade......"
-sudo apt-get -y upgrade > /dev/null  #update the app that have been installed 
-echo "apt-get dist-upgrade......"
-sudo apt-get -y dist-upgrade > /dev/null #force the installation of packages's new dependencies
+if [ -e ~/Downloads ];then
+	echo "~/Downloads exist"
+else
+	echo -e "\033[32m create dir ~/Downloads \033[0m"
+	mkdir ~/Downloads
+fi
+### -----------------------function------------------------###
 
 function git_install(){
 	dpkg -l | grep "[]git[]" > /dev/null
@@ -65,10 +60,9 @@ function git_install(){
 }
 
 function sogou_install(){
-	echo "sogou_intall"
+	echo -e "\033[32m sogou_intall\033[0m"
 	dpkg -l| grep sogou > /dev/null
-	echo "ssss"
-	if [ $? -eq 0];then
+	if [ $? -eq 0 ];then
 		echo -e "\033[32m you have install sogou pinyin  \033[0m"
 	else
 		cd ~/Downloads
@@ -115,29 +109,19 @@ function vim_install(){
 #More information about vundle: https://github.com/VundleVim/Vundle.vim
 #关于vundle 详细的介绍可见：https://www.zhihu.com/question/24294358
 #还可见：http://os.51cto.com/art/201507/484174.htm
-### --------------------------------------------- ###
 
-git_install
-
-if [ -e ~/init_ubuntu ]
-then
-	echo -e "\033[32m you have clone init_ubuntu \033[0m"
-else
-	git clone https://github.com/Jackiexiao/init_ubuntu
-fi
-sogou_install
-vim_install
-### --------------------------------------------- ###
- 
-### Step 2: Optional application install ###
-echo -e "\033[44;37;5m ---------- Step 2: Optional applicaiton install -----------\033[0m"
 
 # install lantern 翻墙软件
 function lantern(){
-	echo -e "\033[32m install lantern \033[0m"
-	cd ~/Downloads
-	wget -c https://raw.githubusercontent.com/getlantern/lantern-binaries/master/lantern-installer-64-bit.deb
-	sudo dpkg -i  lantern-installer-64-bit.deb
+	dpkg -l | grep lantern
+	if [ $? -eq 0 ];then
+		echo -e "\033[32m you have install lantern\033[0m"	
+	else
+		echo -e "\033[32m install lantern \033[0m"
+		cd ~/Downloads
+		wget -c https://raw.githubusercontent.com/getlantern/lantern-binaries/master/lantern-installer-64-bit.deb
+		sudo dpkg -i  lantern-installer-64-bit.deb
+	fi
 }
 
 # install hosts
@@ -227,6 +211,7 @@ fi
 function anaconda(){
 	echo -e "\033[32m install anaconda \033[0m"
 	dpkg -l|grep anaconda > /dev/null
+	#TODO bug: you can't judge if anaconda have been install by dpkg
 	if [ $? -eq 0 ];then
 		echo -e "\033[32m you have install anaconda \033[0m"
 	else
@@ -238,6 +223,7 @@ function anaconda(){
 		else
 			wget -c https://repo.continuum.io/archive/Anaconda3-4.4.0-Linux-x86_64.sh
 			sudo bash Anaconda3-4.4.0-Linux-x86_64.sh
+			sudo chown -R ${username}:${username} ~/anaconda3
 		fi
 	fi
 }
@@ -266,23 +252,12 @@ function other_tools(){
 	apt-get -y install unrar unzip > /dev/null
 }
 
-### --------------------------------------------- ###
-lantern
-hosts
-other_tools
-gitbook
-jekyll
-typora
-docker
-anaconda
-#tensorflow_cpu_anaconda
-### --------------------------------------------- ###
-echo -e "\033[44;37;5m ------------Step 3 : Personal software installation ----------- \033[0m"
 function sysu_iarc(){
 	echo -e "\033[32m clone sysu_iarc... \033[0m"
 	mkdir ~/proj
 	cd proj
 	git clone https://gitlab.com/SYSU-IARC/building
+	sudo chown -R ${username}:${username} ~/proj
 	cd building
 	source clone.sh
 	cd ~
@@ -296,6 +271,7 @@ function merlin(){
 	sudo apt-get -y install csh
 	pip install numpy scipy matplotlib lxml theano bandmat
 	git clone https://github.com/CSTR-Edinburgh/merlin.git
+	sudo chown -R ${username}:${username} ~/merlin
 	cd merlin/tools
 	sudo bash compile_tools.sh
 }
@@ -306,6 +282,7 @@ function gym_theano_keras(){
 	## install dependencies
 	sudo apt-get install -y python-numpy python-dev cmake zlib1g-dev libjpeg-dev xvfb libav-tools xorg-dev python-opengl libboost-all-dev libsdl2-dev swig
 	git clone https://github.com/openai/gym
+	sudo chown -R ${username}:${username} ~/gym
 	cd gym 
 	pip install -e '.[all]'
 }
@@ -318,25 +295,69 @@ function universe(){
 	pip install numpy
 	sudo apt-get -y install golang libjpeg-turbo8-dev make
 	git clone https://github.com/openai/universe.git
+	sudo chown -R ${username}:${username} ~/universe
 	cd universe
 	pip install -e .
 }
 
-### --------------------------------------------- ###
+function merlin_test(){
+	cd ~/merlin/egs/slt_arctic/s1
+	sudo bash run_demo.sh
+}
+
+
+###  Step 0: Confirm which software you want to install ###
+echo -e "\033[44;37;5m-----Step 0: Confirm which software you want to install ------------\033[0m" 
+echo " TODO"
+
+###------------ Step 1: Basic application install------ ###
+echo -e "\033[44;37;5m-----Step 1: Basic applicaiton installi-----------------------------\033[0m"
+echo "apt-get update......"
+sudo apt-get -y update > /dev/null #update apt source 
+echo "apt-get upgrade......"
+sudo apt-get -y upgrade > /dev/null  #update the app that have been installed 
+echo "apt-get dist-upgrade......"
+sudo apt-get -y dist-upgrade > /dev/null #force the installation of packages's new dependencies
+
+git_install
+if [ -e ~/init_ubuntu ]
+then
+	echo -e "\033[32m you have clone init_ubuntu \033[0m"
+else
+	git clone https://github.com/Jackiexiao/init_ubuntu
+fi
+sudo chown -R ${username}:${username} ~/init_ubuntu
+sogou_install
+vim_install
+ 
+###----- Step 2: Optional application install---------- ###
+echo -e "\033[44;37;5m ---------- Step 2: Optional applicaiton install -----------\033[0m"
+lantern
+hosts
+other_tools
+gitbook
+jekyll
+typora
+docker
+#anaconda
+#tensorflow_cpu_anaconda
+### Step 3 : Personal software installation ###
+echo -e "\033[44;37;5m ------------Step 3 : Personal software installation ----------- \033[0m"
 sysu_iarc
 #TODO bug here , it seems you can't conda using shell
 merlin
 gym_theano_keras
 universe
-### ----------personal git----------------------- ###
+### ---------------personal file----------------------- ###
 cd ~
+sudo rm -rf ~/book
 mkdir book
 cd book
 git clone https://github.com/Jackiexiao/diary
 git clone https://github.com/Jackiexiao/myfaith
+sudo chown -R ${username}:${username} ~/book
 
-### --------------------------------------------- ###
-
+### ----------Step 4: Change file manually------------- ###
 echo -e "\033[44;37;5m -----------Step 4: Change file manually---------\033[0m"
 echo "Sogou pinyin: if you install this, enter 'fcitx-config-gtk3' in the terminal and add sogou pinyin to input method, after reboot, it should work "
 echo "vim:          Launch vim and run :PluginInstall "
@@ -352,29 +373,19 @@ echo "(7) tensorflow"
 echo "(8) NVIDIA and cuda"
 echo "------------------------------------------------"
 
-
+### ---------Step 5: Test for some installation-------- ###
 echo -e "\033[44;37;5m -----------Step 5: Test for some installation ---------\033[0m"
-function merlin_test(){
-	cd ~/merlin/egs/slt_arctic/s1
-	sudo bash run_demo.sh
-}
-#function tensorflow_cpu_anaconda_test(){
-#}
-### --------------------------------------------- ###
 merlin_test
-tensorflow_cpu_anaconda_test
 
-### --------------------------------------------- ###
+### ---------Step 6: Update software again------------- ###
+echo -e "\033[44;37;5m ---------Step 6: Update software again----------\033[0m"
 echo "apt-get update again......"
 sudo apt-get -y update > /dev/null #update apt source 
 echo "apt-get upgrade again......"
 sudo apt-get -y upgrade > /dev/null  #update the app that have been installed 
 echo "apt-get dist-upgrade again......"
 sudo apt-get -y dist-upgrade > /dev/null #force the installation of packages's new dependencies
-
-
-### --------------------------------------------- ###
-
+### -----------End ! Successful------------------------ ###
 
 # install NVIDIA and cuda https://zhuanlan.zhihu.com/p/27168325
 # or follow English tutorial http://cv-tricks.com/artificial-intelligence/deep-learning/deep-learning-frameworks/tensorflow/install-tensorflow-1-0-gpu-ubuntu-14-04-aws-p2-xlarge/
