@@ -1,4 +1,4 @@
-# Init ubuntu 16.04 Ubuntu 16 一键配置脚本
+# Ubuntu 16.04 一键配置脚本
 ## 运行
 首先修改init_ubuntu.sh文件，将你不想要的软件用#号注释掉，例如
 `#git_install` 
