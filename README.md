@@ -1,9 +1,9 @@
 # Ubuntu 16.04 一键配置脚本 V0.1 beta
 ## 运行
 首先修改init_ubuntu.sh文件，在### Step 2 ###中（在sh脚本的末尾位置）将你不想要的软件用#号注释掉，例如
-`#git_install` 
-`vim_install`
-`#sogou_install`
+`#git_install`   
+`vim_install`  
+`#sogou_install`  
 在终端输入  
 `user@user:~$  sudo bash init_ubuntu.sh`
   
@@ -36,19 +36,19 @@ lantern : 一款每月免费500M流量的翻墙软件           官方githu
 hosts   : 通过更改hosts翻墙，但无法观看youtube视频 官方github: https://github.com/racaljk/hosts  
 
 ### 写作与博客
-gitbook : github推出的电子书编辑器                官网：      https://www.gitbook.com/
-jekyll  : 静态网站工具，可用于github pages         官网：     http://jekyll.com.cn/
-typora  ：非常简洁好用的markdown编辑器
+gitbook : github推出的电子书编辑器                官网：      https://www.gitbook.com/  
+jekyll  : 静态网站工具，可用于github pages         官网：     http://jekyll.com.cn/  
+typora  ：非常简洁好用的markdown编辑器  
 
 ### 工具
-Docker
-Anaconda
+Docker  
+Anaconda  
 
 ### Linux常用工具
-tree
-unrar
-unzip
+tree  
+unrar  
+unzip  
 
 ### Openai
-gym
-universe
+gym  
+universe  
