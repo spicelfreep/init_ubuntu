@@ -4,7 +4,7 @@
 # Usege : you should run as "sudo bash init_ubuntu.sh | tee init_ubuntu.log"
 
 set -o nounset # avoid quote variable which not defined
-set -o errexit # ignore command line which fail
+#set -o errexit # ignore command line which fail
 
 if test "$#" -ne 0
 then
@@ -12,12 +12,16 @@ then
 	exit 1
 fi
 
+cd ~
+homedir=`pwd`
+username=`whoami`
+
 ### Step 0: Confirm which software you want to install ###
-echo -e " \033[44;37;5m-----Step 0: Confirm which software you want to install -----\033[0m" 
+echo -e "\033[44;37;5m-----Step 0: Confirm which software you want to install ------------\033[0m" 
 echo " TODO"
 
 ### Step 1: Basic application install ###
-echo -e "\033[44;37;5m-----Step 1: Basic applicaiton installi-----\033[0m"
+echo -e "\033[44;37;5m-----Step 1: Basic applicaiton installi------------\033[0m"
 echo "apt-get update......"
 sudo apt-get -y update > /dev/null #update apt source 
 echo "apt-get upgrade......"
@@ -25,12 +29,27 @@ sudo apt-get -y upgrade > /dev/null  #update the app that have been installed
 echo "apt-get dist-upgrade......"
 sudo apt-get -y dist-upgrade > /dev/null #force the installation of packages's new dependencies
 
-cd ~
-
 function git_install(){
 	dpkg -l | grep "[]git[]" > /dev/null
 	if [ $? -eq 0 ];then
 		echo -e "\033[32m you have install git \033[0m"
+		echo "Do you want to config your git?[y\n]"
+		read judge
+		if [ ${judge} = "y" ];then
+			echo "you choose yes"
+			sudo apt-get -y install git > /dev/null
+			echo "enter your git name"
+			read git_name
+			git config --global user.name ${git_name}
+			echo "enter your git email"
+			read git_email
+			git config --global user.email ${git_email}
+			# git alias
+			git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+		else
+			echo "you choose no"
+		fi
+
 	else
 		echo -e "\033[32m install git\033[0m"
 		sudo apt-get -y install git
@@ -42,29 +61,13 @@ function git_install(){
 		git config --global user.email ${git_email}
 		# git alias
 		git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
-# TODO: generate ssh key
-# sh-keygen -t rsa -C ${git_email}
-# eval "$(ssh-agent -s)"
-# ssh-add ~/.ssh/id_rsa
-fi
+	fi
 }
 
-if [ ! -f ~/init_ubuntu ]
-then
-	echo -e "\033[32m you have clone init_ubuntu \033[0m"
-else
-	git clone https://github.com/Jackiexiao/init_ubuntu
-fi
-
-if [ ! -f ~/Downloads ]
-then
-	cd ~/Downloads
-else
-	mkdir ~/Downloads
-fi
-
 function sogou_install(){
+	echo "sogou_intall"
 	dpkg -l| grep sogou > /dev/null
+	echo "ssss"
 	if [ $? -eq 0];then
 		echo -e "\033[32m you have install sogou pinyin  \033[0m"
 	else
@@ -72,6 +75,7 @@ function sogou_install(){
 		echo -e "\033[32m install sogou pinyin \033[0m"
 		wget -c "pinyin.sogou.com/linux/download.php?f=linux&bit=64" -O sogoupinyin_2.1.0.0086_amd64.deb
 		sudo dpkg -i sogoupinyin_2.1.0.0086_amd64.deb
+		sudo apt-get -f install
 	fi
 }
 
@@ -79,6 +83,22 @@ function vim_install(){
 	dpkg -l|grep vim > /dev/null
 	if [ $? -eq 0 ];then
 		echo -e "\033[32m you have install vim \033[0m"
+		echo  "Do you want to set your vim to recommand setting?[y\n]"
+		read judge
+		if [ ${judge} = "y" ];then
+			echo "you choose yes"
+			sudo apt-get -y install vim-gtk 
+			cp ~/init_ubuntu/.vimrc ~/.vimrc
+			# install ctags
+			sudo apt-get -y install ctags
+			sudo rm -rf ~/.vim
+			mkdir -p ~/.vim/bundle
+			git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+			vim +PluginInstall +qall
+
+		else
+			echo "you choose no"
+		fi
 	else
 		echo -e "\033[32m install vim \033[0m"
 		# install vim 
@@ -96,13 +116,21 @@ function vim_install(){
 #关于vundle 详细的介绍可见：https://www.zhihu.com/question/24294358
 #还可见：http://os.51cto.com/art/201507/484174.htm
 ### --------------------------------------------- ###
+
 git_install
+
+if [ -e ~/init_ubuntu ]
+then
+	echo -e "\033[32m you have clone init_ubuntu \033[0m"
+else
+	git clone https://github.com/Jackiexiao/init_ubuntu
+fi
 sogou_install
 vim_install
 ### --------------------------------------------- ###
  
 ### Step 2: Optional application install ###
-echo -e "\033[44;37;5m ------ Step 2: Optional applicaiton install ------\033[0m"
+echo -e "\033[44;37;5m ---------- Step 2: Optional applicaiton install -----------\033[0m"
 
 # install lantern 翻墙软件
 function lantern(){
@@ -171,6 +199,7 @@ fi
 # there is a bug during installing typora
 function typora(){
 	# optional, but recommended
+	echo -e "\033[32m install typora \033[0m"
 	sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys BA300B7755AFCFAE
 
 	# add Typora's repository
@@ -184,6 +213,7 @@ function typora(){
 
 # install docker
 function docker(){
+	echo -e "\033[32m install docker \033[0m"
 	dpkg -l|grep docker > /dev/null
 	if [ $? -eq 0 ];then
 		echo -e "\033[32m you have install docker \033[0m"
@@ -195,14 +225,20 @@ fi
 
 # install anaconda
 function anaconda(){
+	echo -e "\033[32m install anaconda \033[0m"
 	dpkg -l|grep anaconda > /dev/null
 	if [ $? -eq 0 ];then
 		echo -e "\033[32m you have install anaconda \033[0m"
 	else
 		echo -e "\033[32m install anaconda \033[0m"
 		cd ~/Downloads
-		wget -c https://repo.continuum.io/archive/Anaconda3-4.4.0-Linux-x86_64.sh
-		sudo bash Anaconda3-4.4.0-Linux-x86_64.sh
+		#TODO
+		if [ -e Anaconda3-4.4.0-Linux-x86_64.sh ];then
+			sudo bash Anaconda3-4.4.0-Linux-x86_64.sh
+		else
+			wget -c https://repo.continuum.io/archive/Anaconda3-4.4.0-Linux-x86_64.sh
+			sudo bash Anaconda3-4.4.0-Linux-x86_64.sh
+		fi
 	fi
 }
 
@@ -220,33 +256,30 @@ function tensorflow_cpu_anaconda(){
 	sudo  pip install --ignore-installed --upgrade https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-1.1.0-cp36-cp36m-linux_x86_64.whl
 }
 
-function flash(){
-	apt-get -y install flashplugin-nonfree 
-}
-
 #function python(){
 	#TODO
 #}
 
 function other_tools(){
-	apt-get -y install tree
-	apt-get -y install unrar unzip
+	echo -e "\033[32m install tools --tree && unrar unzip... \033[0m"
+	apt-get -y install tree > /dev/null
+	apt-get -y install unrar unzip > /dev/null
 }
 
 ### --------------------------------------------- ###
 lantern
-#hosts
+hosts
 other_tools
 gitbook
 jekyll
-#typora
+typora
 docker
-#anaconda
+anaconda
 #tensorflow_cpu_anaconda
-flash
 ### --------------------------------------------- ###
-echo -e "\033[44;37;5m ------Step 3 : Personal software installation ----- \033[0m"
+echo -e "\033[44;37;5m ------------Step 3 : Personal software installation ----------- \033[0m"
 function sysu_iarc(){
+	echo -e "\033[32m clone sysu_iarc... \033[0m"
 	mkdir ~/proj
 	cd proj
 	git clone https://gitlab.com/SYSU-IARC/building
@@ -256,6 +289,7 @@ function sysu_iarc(){
 }
 
 function merlin(){
+	echo -e "\033[32m install merlin... \033[0m"
 	cd ~
 	conda create --name merlin python=2.7
 	source activate merlin
@@ -267,7 +301,7 @@ function merlin(){
 }
 
 function gym_theano_keras(){
-	echo "install gym, theano and keras"
+	echo -e "\033[32m install gym, theano and keras\033[0m"
 	cd ~
 	## install dependencies
 	sudo apt-get install -y python-numpy python-dev cmake zlib1g-dev libjpeg-dev xvfb libav-tools xorg-dev python-opengl libboost-all-dev libsdl2-dev swig
@@ -289,9 +323,9 @@ function universe(){
 }
 
 ### --------------------------------------------- ###
-#sysu_iarc
+sysu_iarc
 #TODO bug here , it seems you can't conda using shell
-#merlin
+merlin
 gym_theano_keras
 universe
 ### ----------personal git----------------------- ###
@@ -331,9 +365,14 @@ merlin_test
 tensorflow_cpu_anaconda_test
 
 ### --------------------------------------------- ###
-sudo apt-get -y update
-sudo apt-get -y upgrade
-sudo apt-get -f install
+echo "apt-get update again......"
+sudo apt-get -y update > /dev/null #update apt source 
+echo "apt-get upgrade again......"
+sudo apt-get -y upgrade > /dev/null  #update the app that have been installed 
+echo "apt-get dist-upgrade again......"
+sudo apt-get -y dist-upgrade > /dev/null #force the installation of packages's new dependencies
+
+
 ### --------------------------------------------- ###
 
 
