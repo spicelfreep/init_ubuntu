@@ -58,5 +58,9 @@ Plugin 'bling/vim-airline'
 **gym**  
 **universe**  
 
+## 关于Ubuntu的其他配置
+1.自定义按键[通过 XKB 修改键盘映射, 实现自定义按键](https://github.com/Chunlin-Li/Chunlin-Li.github.io/blob/master/blogs/linux/ubuntu-xkb-keyboard-remap.md)
+
 ## 欢迎反馈bug或加入维护
 Issue && Pull request
+
