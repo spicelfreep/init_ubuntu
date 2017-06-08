@@ -242,25 +242,10 @@ function tensorflow_cpu_anaconda(){
 	sudo  pip install --ignore-installed --upgrade https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-1.1.0-cp36-cp36m-linux_x86_64.whl
 }
 
-#function python(){
-	#TODO
-#}
-
 function other_tools(){
 	echo -e "\033[32m install tools --tree && unrar unzip... \033[0m"
 	apt-get -y install tree > /dev/null
 	apt-get -y install unrar unzip > /dev/null
-}
-
-function sysu_iarc(){
-	echo -e "\033[32m clone sysu_iarc... \033[0m"
-	mkdir ~/proj
-	cd proj
-	git clone https://gitlab.com/SYSU-IARC/building
-	sudo chown -R ${username}:${username} ~/proj
-	cd building
-	source clone.sh
-	cd ~
 }
 
 function merlin(){
@@ -306,11 +291,11 @@ function merlin_test(){
 }
 
 
-###  Step 0: Confirm which software you want to install ###
+### Step 0: Confirm which software you want to install ###
 echo -e "\033[44;37;5m-----Step 0: Confirm which software you want to install ------------\033[0m" 
 echo " TODO"
 
-###------------ Step 1: Basic application install------ ###
+### Step 1: Basic application install----------------- ###
 echo -e "\033[44;37;5m-----Step 1: Basic applicaiton installi-----------------------------\033[0m"
 echo "apt-get update......"
 sudo apt-get -y update > /dev/null #update apt source 
@@ -329,8 +314,9 @@ fi
 sudo chown -R ${username}:${username} ~/init_ubuntu
 sogou_install
 vim_install
+
  
-###----- Step 2: Optional application install---------- ###
+### Step 2: Optional application install-------------- ###
 echo -e "\033[44;37;5m ---------- Step 2: Optional applicaiton install -----------\033[0m"
 lantern
 hosts
@@ -341,26 +327,30 @@ typora
 docker
 #anaconda
 #tensorflow_cpu_anaconda
+
+
 ### Step 3 : Personal software installation ###
-echo -e "\033[44;37;5m ------------Step 3 : Personal software installation ----------- \033[0m"
-sysu_iarc
-#TODO bug here , it seems you can't conda using shell
+echo -e "\033[44;37;5m ------------Step 3 : other software installation ----------- \033[0m"
 merlin
+#TODO bug here , it seems you can't conda without install anaconda 
 gym_theano_keras
 universe
-### ---------------personal file----------------------- ###
-cd ~
-sudo rm -rf ~/book
-mkdir book
-cd book
-git clone https://github.com/Jackiexiao/diary
-git clone https://github.com/Jackiexiao/myfaith
-sudo chown -R ${username}:${username} ~/book
+### ---------Step 4: Test for some installation-------- ###
+echo -e "\033[44;37;5m -----------Step 5: Test for some installation ---------\033[0m"
+merlin_test
 
-### ----------Step 4: Change file manually------------- ###
+### ---------Step 5: Update software again------------- ###
+echo -e "\033[44;37;5m ---------Step 6: Update software again----------\033[0m"
+echo "apt-get update again......"
+sudo apt-get -y update > /dev/null #update apt source 
+echo "apt-get upgrade again......"
+sudo apt-get -y upgrade > /dev/null  #update the app that have been installed 
+echo "apt-get dist-upgrade again......"
+sudo apt-get -y dist-upgrade > /dev/null #force the installation of packages's new dependencies
+
+### ----------Step 6: Change file manually------------- ###
 echo -e "\033[44;37;5m -----------Step 4: Change file manually---------\033[0m"
 echo "Sogou pinyin: if you install this, enter 'fcitx-config-gtk3' in the terminal and add sogou pinyin to input method, after reboot, it should work "
-echo "vim:          Launch vim and run :PluginInstall "
 #More information about vundle: https://github.com/VundleVim/Vundle.vim
 echo "-----------------other software-----------------"
 echo "(1) matlab"
@@ -373,21 +363,8 @@ echo "(7) tensorflow"
 echo "(8) NVIDIA and cuda"
 echo "------------------------------------------------"
 
-### ---------Step 5: Test for some installation-------- ###
-echo -e "\033[44;37;5m -----------Step 5: Test for some installation ---------\033[0m"
-merlin_test
-
-### ---------Step 6: Update software again------------- ###
-echo -e "\033[44;37;5m ---------Step 6: Update software again----------\033[0m"
-echo "apt-get update again......"
-sudo apt-get -y update > /dev/null #update apt source 
-echo "apt-get upgrade again......"
-sudo apt-get -y upgrade > /dev/null  #update the app that have been installed 
-echo "apt-get dist-upgrade again......"
-sudo apt-get -y dist-upgrade > /dev/null #force the installation of packages's new dependencies
-### -----------End ! Successful------------------------ ###
-
 # install NVIDIA and cuda https://zhuanlan.zhihu.com/p/27168325
 # or follow English tutorial http://cv-tricks.com/artificial-intelligence/deep-learning/deep-learning-frameworks/tensorflow/install-tensorflow-1-0-gpu-ubuntu-14-04-aws-p2-xlarge/
 
+### -----------End ! Successful------------------------ ###
 echo -e "\033[44;37;5m ------- init ubuntu successful! you should reboot then------\033[0m"
