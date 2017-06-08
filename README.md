@@ -37,6 +37,7 @@ Plugin 'bling/vim-airline'
 ### 2 翻墙软件
 **lantern** : 一款每月免费500M流量的翻墙软件  *
 官方github: https://github.com/getlantern/lantern  
+
 **hosts**   : 通过更改hosts翻墙，但无法观看youtube视频  
 官方github: https://github.com/racaljk/hosts  
 
