@@ -45,7 +45,7 @@ jekyll  : 静态网站工具，可用于github pages         官网：    
 typora  ：非常简洁好用的markdown编辑器  
 
 ### 4 常用软件
-Docker  
+Docker  
 Anaconda  
 
 ### 5 Linux常用工具
