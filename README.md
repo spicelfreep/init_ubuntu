@@ -65,3 +65,5 @@ Plugin 'bling/vim-airline'
 ## 欢迎反馈bug或加入维护
 Issue && Pull request
 
+## Liscence 
+BSD
