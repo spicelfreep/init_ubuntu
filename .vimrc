@@ -35,6 +35,8 @@ Plugin 'Lokaltog/vim-powerline'
 Plugin 'bling/vim-airline'
 set laststatus=2
 set nu
+set hlsearch
+set mouse=a
 Plugin 'fholgado/minibufexpl.vim'
 let g:miniBufExplMapWindowNavVim = 1  
 let g:miniBufExplMapWindowNavArrows = 1   

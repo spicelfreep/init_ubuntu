@@ -14,14 +14,8 @@ fi
 
 ### general setting ###
 cd ~
-homedir=`pwd`
-username=`whoami`
-if [ -e ~/Downloads ];then
-	echo "~/Downloads exist"
-else
-	echo -e "\033[32m create dir ~/Downloads \033[0m"
-	mkdir ~/Downloads
-fi
+username=`users`
+mkdir -p ~/Downloads
 ### -----------------------function------------------------###
 
 function git_install(){
@@ -290,6 +284,21 @@ function merlin_test(){
 	sudo bash run_demo.sh
 }
 
+function python_pip(){
+	sudo apt-get install python-pip
+	sudo pip install --upgrade pip
+}
+
+function flash_install(){
+	sudo apt-get install adobe-flashplugin
+}
+
+# sox is use for play any audio file from terminal 
+# Usage: using command line "play *.audio_file_type
+funciton sox_install(){
+	sudo apt-get install sox
+	sudo apt-get install sox libsox-fmt-all
+}
 
 ### Step 0: Confirm which software you want to install ###
 echo -e "\033[44;37;5m-----Step 0: Confirm which software you want to install ------------\033[0m" 
@@ -318,15 +327,16 @@ vim_install
  
 ### Step 2: Optional application install-------------- ###
 echo -e "\033[44;37;5m ---------- Step 2: Optional applicaiton install -----------\033[0m"
-lantern
+#lantern
 hosts
-other_tools
-gitbook
-jekyll
-typora
-docker
+#other_tools
+#gitbook
+#jekyll
+#typora
+#docker
 #anaconda
-#tensorflow_cpu_anaconda
+python_pip
+tensorflow_cpu_anaconda
 
 
 ### Step 3 : Personal software installation ###
@@ -337,7 +347,7 @@ gym_theano_keras
 universe
 ### ---------Step 4: Test for some installation-------- ###
 echo -e "\033[44;37;5m -----------Step 5: Test for some installation ---------\033[0m"
-merlin_test
+#merlin_test
 
 ### ---------Step 5: Update software again------------- ###
 echo -e "\033[44;37;5m ---------Step 6: Update software again----------\033[0m"
