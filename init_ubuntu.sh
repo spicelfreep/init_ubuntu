@@ -300,6 +300,12 @@ funciton sox_install(){
 	sudo apt-get install sox libsox-fmt-all
 }
 
+# byobu is a useful tool to manage you terminal window 
+function byobu_install(){
+	sudo apt-get install byobu
+	sudo cp ~/init_ubuntu/.tmux.conf ~/.byobu/
+}
+
 ### Step 0: Confirm which software you want to install ###
 echo -e "\033[44;37;5m-----Step 0: Confirm which software you want to install ------------\033[0m" 
 echo " TODO"
