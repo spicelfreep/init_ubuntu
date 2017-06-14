@@ -306,6 +306,11 @@ function byobu_install(){
 	sudo cp -f ~/init_ubuntu/.tmux.conf ~/.byobu/
 }
 
+# TODO
+# chrome
+#function chrome(){
+#}
+
 ### Step 0: Confirm which software you want to install ###
 #echo -e "\033[44;37;5m-----Step 0: Confirm which software you want to install ------------\033[0m" 
 #echo " TODO"
@@ -333,17 +338,17 @@ vim_install
  
 ### Step 2: Optional application install-------------- ###
 echo -e "\033[44;37;5m ---------- Step 2: Optional applicaiton install -----------\033[0m"
-#lantern
+lantern
 hosts
-#other_tools
+other_tools
 #gitbook
 #jekyll
 #typora
 #docker
 #anaconda
-python_pip
+#python_pip
 #tensorflow_cpu_anaconda
-sox_install
+#sox_install
 byobu_install
 
 
