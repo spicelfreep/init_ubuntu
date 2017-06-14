@@ -62,6 +62,8 @@ Plugin 'bling/vim-airline'
 ## 关于Ubuntu的其他配置
 1.自定义按键[通过 XKB 修改键盘映射, 实现自定义按键](https://github.com/Chunlin-Li/Chunlin-Li.github.io/blob/master/blogs/linux/ubuntu-xkb-keyboard-remap.md)
 
+2. 写python的vim插件配置 [推荐](http://mingxinglai.com/cn/2015/06/plugin-of-vim-for-python/)
+
 ## 欢迎反馈bug或加入维护
 Issue && Pull request
 

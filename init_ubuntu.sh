@@ -303,7 +303,7 @@ funciton sox_install(){
 # byobu is a useful tool to manage you terminal window 
 function byobu_install(){
 	sudo apt-get install byobu
-	sudo cp ~/init_ubuntu/.tmux.conf ~/.byobu/
+	sudo cp -f ~/init_ubuntu/.tmux.conf ~/.byobu/
 }
 
 ### Step 0: Confirm which software you want to install ###
