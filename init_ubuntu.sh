@@ -307,8 +307,8 @@ function byobu_install(){
 }
 
 ### Step 0: Confirm which software you want to install ###
-echo -e "\033[44;37;5m-----Step 0: Confirm which software you want to install ------------\033[0m" 
-echo " TODO"
+#echo -e "\033[44;37;5m-----Step 0: Confirm which software you want to install ------------\033[0m" 
+#echo " TODO"
 
 ### Step 1: Basic application install----------------- ###
 echo -e "\033[44;37;5m-----Step 1: Basic applicaiton installi-----------------------------\033[0m"
@@ -327,7 +327,7 @@ else
 	git clone https://github.com/Jackiexiao/init_ubuntu
 fi
 sudo chown -R ${username}:${username} ~/init_ubuntu
-sogou_install
+#sogou_install
 vim_install
 
  
@@ -342,15 +342,19 @@ hosts
 #docker
 #anaconda
 python_pip
-tensorflow_cpu_anaconda
+#tensorflow_cpu_anaconda
+sox_install
+byobu_install
 
 
-### Step 3 : Personal software installation ###
+### ---------Step 3 : Other software installation ---###
 echo -e "\033[44;37;5m ------------Step 3 : other software installation ----------- \033[0m"
-merlin
+#merlin
 #TODO bug here , it seems you can't conda without install anaconda 
-gym_theano_keras
-universe
+#gym_theano_keras
+#universe
+
+
 ### ---------Step 4: Test for some installation-------- ###
 echo -e "\033[44;37;5m -----------Step 5: Test for some installation ---------\033[0m"
 #merlin_test
