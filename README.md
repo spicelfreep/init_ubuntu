@@ -68,3 +68,8 @@ Issue && Pull request
 
 ## Liscence 
 BSD
+
+## TODO
+安装build-essential
+安装iNode
+修复sogou安装bug
