@@ -62,6 +62,9 @@ byobu
 ### 7 iNode校园网客户端
 可参考安装[教程](http://www.cnblogs.com/Duane/p/6835456.html)
 
+### 8 搜狗输入法的安装
+可参考安装[教程](https://jingyan.baidu.com/article/08b6a591cb06f114a8092209.html)
+
 ## 关于Ubuntu的其他配置
 1.自定义按键[通过 XKB 修改键盘映射, 实现自定义按键](https://github.com/Chunlin-Li/Chunlin-Li.github.io/blob/master/blogs/linux/ubuntu-xkb-keyboard-remap.md)
 
