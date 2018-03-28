@@ -22,6 +22,16 @@
 **jekyll**  : 静态网站工具，可用于github pages         官网：     http://jekyll.com.cn/  
 **typora**  ：非常简洁好用的markdown编辑器  
 
+```
+# install typora
+sudo add-apt-repository 'deb https://typora.io linux/'
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys BA300B7755AFCFAE
+sudo apt-get update
+sudo apt-get install typora
+# remove typora
+sudo apt-get remove typora && sudo apt-get autoremove
+```
+
 ### 4 常用软件
 **Docker**  
 **Anaconda**  
@@ -49,8 +59,8 @@
 3. 个人使用的其他软件安装
 * TxtLive === Latex用
 * Shadowsocks === 看这篇文章ubuntu配置参见这篇[文章](http://blog.csdn.net/superbfly/article/details/54950451),手机的话可以下载openWingy
-*
-4. ubuntu界面美化
+* 翻墙之后用sudo -H pip install 这样才能安装，-H 是装在local位置
+4. ubuntu界面美化（默认在init_ubuntu里安装）
 ```
 sudo apt-get install unity-tweak-tool
 ```
@@ -65,6 +75,7 @@ sudo apt-get update
 sudo apt-get install ultra-flat-icons
 ```
 然后进入unity-tweak-tool进行相应的设置
-5. 一些快捷键设置
+5. 其他设置
 * 截图ctrl+alt+a 将`gnome-screenshot
     -ac`加入到系统的shortcut里面,设置为ctrl+alt+a即可
+* chrome 安装有道划词插件

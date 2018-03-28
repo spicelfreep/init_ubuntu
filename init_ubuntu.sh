@@ -90,10 +90,22 @@ function tools_install(){
 	# byobu is a useful tool to manage you terminal window 
 	sudo apt-get install byobu
 	sudo cp -f ~/init_ubuntu/.tmux.conf ~/.byobu/
+    sudo apt-get install p7zip-full # support compress 7z file, usage`7z x file.7z`
 }
 
+function gnome_theme(){
+    # install unity-tweak-tool
+    sudo apt-get install unity-tweak-tool
+    # install themes
+    sudo add-apt-repository ppa:noobslab/themes
+    sudo apt-get update
+    sudo apt-get install flatabulous-theme
+    # install flat icons
+    sudo add-apt-repository ppa:noobslab/icons
+    sudo apt-get update
+    sudo apt-get install ultra-flat-icons
+}
 
-# Step 1: Basic application install----------------- ###
 echo -e "\033[44;37;5m-----Step 1: Basic applicaiton installi-----------------------------\033[0m"
 echo "apt-get update......"
 # sudo apt-get -y update > /dev/null #update apt source 
@@ -103,16 +115,12 @@ sudo apt-get -y upgrade > /dev/null  #update the app that have been installed
 echo "apt-get dist-upgrade......"
 sudo apt-get -y dist-upgrade > /dev/null #force the installation of packages's new dependencies
 
+
+# -----------MAIN PART-----------
 git_install
-if [ -e ~/init_ubuntu ]
-then
-	echo -e "\033[32m you have clone init_ubuntu \033[0m"
-else
-	git clone https://github.com/Jackiexiao/init_ubuntu
-fi
-sudo chown -R ${username}:${username} ~/init_ubuntu
 vim_install
 tools_install
+gnome_theme
 
 echo "Sogou pinyin: if you install this, enter 'fcitx-config-gtk3' in the terminal and add sogou pinyin to input method, after reboot, it should work "
 ### -----------End ! Successful------------------------ ###
