@@ -1,3 +1,4 @@
+"<leader> default measn key '\'
 "---------基础偏好设置-------------
 syntax on            " 开启语法高亮
 set term=screen-256color
@@ -12,18 +13,22 @@ set cursorline       " 突出显示当前行：在当前行下显示横线，方
 set encoding=utf-8   " 使用 utf-8 编码
 set showmatch        " 显示匹配的括号
 "set background=dark  " 设置背景颜色
-"set python 
-set textwidth=79  " lines longer than 79 columns will be broken
-set shiftwidth=4  " operation >> indents 4 columns; << unindents 4 columns
-set tabstop=4     " a hard TAB displays as 4 columns
-set expandtab     " insert spaces when hitting TABs
-set softtabstop=4 " insert/delete 4 spaces when hitting a TAB/BACKSPACE
-set shiftround    " round indent to multiple of 'shiftwidth'
-set autoindent    " align the new line indent with the previous line
+" ------python pep8 indent---------------- 
+au BufNewFile,BufRead *.py
+\ set textwidth=79  " lines longer than 79 columns will be broken
+\ set shiftwidth=4  " operation >> indents 4 columns; << unindents 4 columns
+\ set tabstop=4     " a hard TAB displays as 4 columns
+\ set expandtab     " insert spaces when hitting TABs
+\ set softtabstop=4 " insert/delete 4 spaces when hitting a TAB/BACKSPACE
+\ set shiftround    " round indent to multiple of 'shiftwidth'
+\ set autoindent    " align the new line indent with the previous line
 "end of set python
 
-let g:indentLine_char='┆'        "缩进指示线，这个对于python很有用
-let g:indentLine_enabled = 1     "启用缩进指示线
+au BufNewFile,BufRead *.js,*.html,*.css,*.vue
+\ set tabstop=2 |
+\ set softtabstop=2 |
+\ set shiftwidth=2
+
 filetype off                     " Vundle 插件required
 
 " -------------------Vundle设置----------------------------
@@ -38,12 +43,23 @@ call vundle#rc()
 Plugin 'gmarik/vundle'
 
 " ------------vim 插件推荐--------------
-"Plugin 'vim-syntastic/syntastic'         "自动检查语法错误-
+"Plugin 'vim-syntastic/syntastic'        "自动检查语法错误-但这个感觉不大好
+"Plugin 'w0rp/ale'                        "语法检查，记得vim version >8.0
 Plugin 'Lokaltog/vim-powerline'          "这个可以让vim的状态栏变得很漂亮
-Plugin 'plasticboy/vim-markdown'         "让vim支持markdown语法的高亮
 Plugin 'Valloric/YouCompleteMe'          "自动补全插件，杀手级插件
-Plugin 'bling/vim-airline'
-Plugin 'flazz/vim-colorschemes'          "vim schemes颜色主题，相关设置请查看对应github仓库
+Plugin 'bling/vim-airline'               "让vim下面的信息条更好看
+Plugin 'flazz/vim-colorschemes'          "vim schemes颜色主题'
+Plugin 'nvie/vim-flake8'                 "PEP8 checking
+Plugin 'scrooloose/nerdtree'             "browse file directory in vim
+Plugin 'scrooloose/nerdcommenter'        " quick comment using <leader>ci
+Plugin 'skywind3000/asyncrun.vim'        "在文件内执行Python代码
+Plugin 'Yggdroot/indentLine'             "用|来展示缩进对齐
+Plugin 'jiangmiao/auto-pairs'            "自动添加对应的括号
+Plugin 'kien/ctrlp.vim'                  " ctrl + p to fuzzy search file in vim
+
+Plugin 'python-mode/python-mode'         " python ide help doc see :help python-mode
+Plugin 'posva/vim-vue'                   "vue.js syntax highlight
+Plugin 'plasticboy/vim-markdown'         "让vim支持markdown语法的高亮
 " ---------------自动折叠------------------
 " Enable folding
 set foldmethod=indent
@@ -57,9 +73,59 @@ Plugin 'tmhedberg/SimpylFold'
 " ---------------颜色主题------------------
 colorscheme molokai
 
-" -----标示不必要的空白字符------
-"  au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
+" --------------缩进对齐 ----Yggdroot/indentLine --------
+let g:indentLine_char='┆'        "缩进指示线，这个对于python很有用
+let g:indentLine_enabled = 1     "启用缩进指示线
 
+" --------------python ide----------------
+let g:pymode_python = 'python3' 
+" use python3 syntax checking
+ 
+ 
+"----------注释comment-------nerdcommenter
+"map <F4> <leader>ci <CR> 
+"用F4来取代<leader>ci作注释
+
+" ---------nerdtree 设置 ------------
+map <C-n> :NERDTreeToggle<CR>
+" 设置ctrl-n打开侧边栏的文件夹浏览器
+" autocmd vimenter * NERDTree
+" 每次打开vim的时候自动打开Nerdtree,感觉没有必要，所以这里没有开启
+let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
+
+" ----------显示不必要的空格----------
+"Flagging Unnecessary Whitespace
+highlight BadWhitespace ctermbg=red guibg=darkred
+au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
+
+"-------- F5 自动运行代码----------
+" Quick run via <F5>
+nnoremap <F5> :call <SID>compile_and_run()<CR>
+
+function! s:compile_and_run()
+    exec 'w'
+    if &filetype == 'c'
+        exec "AsyncRun! gcc % -o %<; time ./%<"
+    elseif &filetype == 'cpp'
+       exec "AsyncRun! g++ -std=c++11 % -o %<; time ./%<"
+    elseif &filetype == 'java'
+       exec "AsyncRun! javac %; time java %<"
+    elseif &filetype == 'sh'
+       exec "AsyncRun! time bash %"
+    elseif &filetype == 'python'
+       exec "AsyncRun! time python %"
+    endif
+endfunction
+" augroup SPACEVIM_ASYNCRUN
+"     autocmd!
+"    " Automatically open the quickfix window
+"     autocmd User AsyncRunStart call asyncrun#quickfix_toggle(15, 1)
+" augroup END
+"
+" asyncrun now has an option for opening quickfix automatically
+let g:asyncrun_open = 15
+
+" ------vundle 必要设置-----------
 filetype plugin indent on     " required
     " To ignore plugin indent changes, instead use:
     "filetype plugin on
