@@ -87,23 +87,32 @@ function tools_install(){
 	apt-get -y install tree > /dev/null
 	apt-get -y install unrar unzip > /dev/null
 	sudo apt-get install adobe-flashplugin
-	# byobu is a useful tool to manage you terminal window 
-	sudo apt-get install byobu
-	sudo cp -f ~/init_ubuntu/.tmux.conf ~/.byobu/
-    sudo apt-get install p7zip-full # support compress 7z file, usage`7z x file.7z`
+	sudo apt-get install tmux
+	sudo cp -f ~/init_ubuntu/.tmux.conf ~/
+	sudo apt-get install p7zip-full # support compress 7z file, usage`7z x file.7z`
+	# xournal is a pdf reader which could add note easily
+	sudo apt-get install xournal 
+	sudo apt-get install flashplugin-installer
 }
 
 function gnome_theme(){
-    # install unity-tweak-tool
-    sudo apt-get install unity-tweak-tool
-    # install themes
-    sudo add-apt-repository ppa:noobslab/themes
-    sudo apt-get update
-    sudo apt-get install flatabulous-theme
-    # install flat icons
-    sudo add-apt-repository ppa:noobslab/icons
-    sudo apt-get update
-    sudo apt-get install ultra-flat-icons
+	# install unity-tweak-tool
+	sudo apt-get install unity-tweak-tool
+	# install themes
+	sudo add-apt-repository ppa:noobslab/themes
+	sudo apt-get update
+	sudo apt-get install flatabulous-theme
+	# install flat icons
+	sudo add-apt-repository ppa:noobslab/icons
+	sudo apt-get update
+	sudo apt-get install ultra-flat-icons
+}
+
+function manual_install(){
+	# Attention ! You should manally install !
+	# (1) Jupyter notebook extensions
+	# (2) jump out of the GFW
+	# (3) tmux and add .tmux.conf 
 }
 
 echo -e "\033[44;37;5m-----Step 1: Basic applicaiton installi-----------------------------\033[0m"
@@ -125,3 +134,5 @@ gnome_theme
 echo "Sogou pinyin: if you install this, enter 'fcitx-config-gtk3' in the terminal and add sogou pinyin to input method, after reboot, it should work "
 ### -----------End ! Successful------------------------ ###
 echo -e "\033[44;37;5m ------- init ubuntu successful! you should reboot then------\033[0m"
+### -----------End ! Successful------------------------ ###
+echo -e "\033[44;37;5m ------- check init_ubuntu's manual_install and install by yourself------\033[0m"

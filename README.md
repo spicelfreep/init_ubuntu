@@ -3,19 +3,29 @@
 `user@user:~$  sudo bash init_ubuntu.sh`
 如果你想保存安装日志，输入  
 `user@user:~$  sudo bash init_ubuntu.sh | tee init_ubuntu.log`
+
 ## 一些说明
+
+### 0 初始设置
+在system setting -> software update -> ubuntu software -> Download from那里设置 http://mirrors.aliyun.com/ubuntu 可以提高速度
 ### 1 基础软件
 **git** : 除了基本的用户名和邮箱设置，增加了一个十分有用的命令别名：`git lg`，用于简洁而美观地输出 git log
 
 **vim** :
 进行基础的配置，使用vundle管理vim插件，并自动安装了常用的插件，同时也配置好了轻量级的Python编程环境，具体你可以在.vimrc中进行设置，如果没有设置，则默认使用推荐的配置。  
 
+xournal: pdf阅读器，支持给pdf做笔记，看论文的时候很有用
+```
+ sudo apt-get install xournal
+```
 ### 2 翻墙软件
 **lantern** : 一款每月免费500M流量的翻墙软件  *
 官方github: https://github.com/getlantern/lantern  
 
 **hosts**   : 通过更改hosts翻墙，但无法观看youtube视频  
 官方github: https://github.com/racaljk/hosts  
+
+推荐使用shadowsocks+自行搭建国外服务器，翻墙更稳定
 
 ### 3 写作与博客
 **gitbook** : github推出的电子书编辑器                官网：      https://www.gitbook.com/  
@@ -52,7 +62,7 @@ sudo apt-get remove typora && sudo apt-get autoremove
 可参考安装[教程](https://jingyan.baidu.com/article/08b6a591cb06f114a8092209.html)
 
 ## 关于Ubuntu的其他配置
-1.自定义按键[通过 XKB 修改键盘映射, 实现自定义按键](https://github.com/Chunlin-Li/Chunlin-Li.github.io/blob/master/blogs/linux/ubuntu-xkb-keyboard-remap.md)
+1.自定义按键[通过 XKB 修改键盘映射, 实现自定义按键](ht   tps://github.com/Chunlin-Li/Chunlin-Li.github.io/blob/master/blogs/linux/ubuntu-xkb-keyboard-remap.md)
 
 2. 写python的vim插件配置 [推荐](http://mingxinglai.com/cn/2015/06/plugin-of-vim-for-python/)
 
@@ -79,3 +89,19 @@ sudo apt-get install ultra-flat-icons
 * 截图ctrl+alt+a 将`gnome-screenshot
     -ac`加入到系统的shortcut里面,设置为ctrl+alt+a即可
 * chrome 安装有道划词插件
+
+6. 服务器端的设置
+* 推荐阅读[如何与深度学习服务器优雅的交互？（长期更新）](https://zhuanlan.zhihu.com/p/32496193)
+
+7. Chrome 安装
+在这里下载对应的安装包https://www.google.cn/chrome/  然后用dpkg安装，如果有提示缺少依赖包，就先运行下apt-get -f install 然后再用dpkg安装一下即可
+
+## ubuntu 系统安装常见问题
+1. ubuntu 下制作ubuntu启动盘`sudo usb-creator-gtk` 或者使用 disks 因为：
+```
+The Startup Disk Creator is known to having some issues.
+Use the Disks tool to create the Ubuntu installation media.
+Open Disks and select Restore Disk Image from the menu on the top right of the application.
+Choose the Ubuntu installation ISO file and the USB drive to write it to and start restoring.
+```
+2. ubuntu 16 系统下载地址 http://releases.ubuntu.com/16.04/

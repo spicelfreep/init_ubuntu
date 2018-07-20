@@ -58,7 +58,7 @@ Plugin 'jiangmiao/auto-pairs'            "自动添加对应的括号
 Plugin 'kien/ctrlp.vim'                  " ctrl + p to fuzzy search file in vim
 
 Plugin 'python-mode/python-mode'         " python ide help doc see :help python-mode
-Plugin 'posva/vim-vue'                   "vue.js syntax highlight
+"Plugin 'posva/vim-vue'                   "vue.js syntax highlight
 Plugin 'plasticboy/vim-markdown'         "让vim支持markdown语法的高亮
 " ---------------自动折叠------------------
 " Enable folding
@@ -79,6 +79,7 @@ let g:indentLine_enabled = 1     "启用缩进指示线
 
 " --------------python ide----------------
 let g:pymode_python = 'python3' 
+let g:pymode_syntax_space_errors = 0
 " use python3 syntax checking
  
  
@@ -95,12 +96,21 @@ let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
 
 " ----------显示不必要的空格----------
 "Flagging Unnecessary Whitespace
-highlight BadWhitespace ctermbg=red guibg=darkred
-au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
+"highlight BadWhitespace ctermbg=red guibg=darkred
+"au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 
-"-------- F5 自动运行代码----------
+"-------- F5 自动运行代码相关配置----------
 " Quick run via <F5>
 nnoremap <F5> :call <SID>compile_and_run()<CR>
+" set the quickfix window 6 lines height.
+let g:asyncrun_open = 6
+"
+" ring the bell to notify you job finished
+" let g:asyncrun_bell = 1
+"
+"" F10 to toggle quickfix window
+nnoremap <F10> :call asyncrun#quickfix_toggle(6)<cr>"
+" "
 
 function! s:compile_and_run()
     exec 'w'
