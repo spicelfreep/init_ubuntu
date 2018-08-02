@@ -119,3 +119,6 @@ network ==> method > manual, socks host 127.0.0.1, 1080, then copy shadowsocks.j
 ```
 sslocal -c shadowsocks.json
 ```
+
+3. 无法长按某个键连续输入
+https://www.jianshu.com/p/db0d6f958274
