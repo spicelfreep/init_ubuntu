@@ -105,3 +105,17 @@ Open Disks and select Restore Disk Image from the menu on the top right of the a
 Choose the Ubuntu installation ISO file and the USB drive to write it to and start restoring.
 ```
 2. ubuntu 16 系统下载地址 http://releases.ubuntu.com/16.04/
+
+# Shadowsocks 
+see website : https://blog.csdn.net/superbfly/article/details/54950451
+https://blog.huihut.com/2017/08/25/LinuxInstallConfigShadowsocksClient/
+```
+sudo apt-get install python-pip 
+pip install git+https://github.com/shadowsocks/shadowsocks.git@master 
+```
+network ==> method > manual, socks host 127.0.0.1, 1080, then copy shadowsocks.json, 
+
+每次开机时候运行下面的命令即可
+```
+sslocal -c shadowsocks.json
+```

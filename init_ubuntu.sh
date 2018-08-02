@@ -132,7 +132,7 @@ tools_install
 gnome_theme
 
 echo "Sogou pinyin: if you install this, enter 'fcitx-config-gtk3' in the terminal and add sogou pinyin to input method, after reboot, it should work "
-echo "shadowsocks ==> sudo apt-get install python-pip  && pip install git+https://github.com/shadowsocks/shadowsocks.git@master && network ==> method > manual, socks host 127.0.0.1, 1080, then copy shadowsocks.json, sslocal -c shadowsocks.json "
+echo "shadowsocks see README.md"
 ### -----------End ! Successful------------------------ ###
 echo -e "\033[44;37;5m ------- init ubuntu successful! you should reboot then------\033[0m"
 ### -----------End ! Successful------------------------ ###
