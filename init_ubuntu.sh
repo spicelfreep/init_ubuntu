@@ -93,6 +93,9 @@ function tools_install(){
 	# xournal is a pdf reader which could add note easily
 	sudo apt-get install xournal 
 	sudo apt-get install flashplugin-installer
+	sudo apt-get install meld
+	sudo apt-get install tree
+	sudo apt-get install audacity
 }
 
 function gnome_theme(){
@@ -126,9 +129,6 @@ sudo apt-get -y dist-upgrade > /dev/null #force the installation of packages's n
 
 
 # -----------MAIN PART-----------
-git_install
-vim_install
-tools_install
 gnome_theme
 
 echo "Sogou pinyin: if you install this, enter 'fcitx-config-gtk3' in the terminal and add sogou pinyin to input method, after reboot, it should work "
