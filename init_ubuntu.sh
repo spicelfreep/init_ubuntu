@@ -108,12 +108,12 @@ function gnome_theme(){
 	sudo apt-get install ultra-flat-icons
 }
 
-function manual_install(){
-	# Attention ! You should manally install !
-	# (1) Jupyter notebook extensions
-	# (2) jump out of the GFW
-	# (3) tmux and add .tmux.conf 
-}
+#function manual_install(){
+#	# Attention ! You should manally install !
+#	# (1) Jupyter notebook extensions
+#	# (2) jump out of the GFW
+#	# (3) tmux and add .tmux.conf 
+#}
 
 echo -e "\033[44;37;5m-----Step 1: Basic applicaiton installi-----------------------------\033[0m"
 echo "apt-get update......"
@@ -132,6 +132,7 @@ tools_install
 gnome_theme
 
 echo "Sogou pinyin: if you install this, enter 'fcitx-config-gtk3' in the terminal and add sogou pinyin to input method, after reboot, it should work "
+echo "shadowsocks see README.md"
 ### -----------End ! Successful------------------------ ###
 echo -e "\033[44;37;5m ------- init ubuntu successful! you should reboot then------\033[0m"
 ### -----------End ! Successful------------------------ ###
