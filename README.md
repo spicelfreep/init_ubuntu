@@ -122,3 +122,13 @@ sslocal -c shadowsocks.json
 
 3. 无法长按某个键连续输入
 https://www.jianshu.com/p/db0d6f958274
+4. 修改pip源使其更快
+Linux下，修改 ~/.pip/pip.conf (没有就创建一个文件夹及文件。文件夹要加“.”，表示是隐藏文件夹)
+
+内容如下：
+```
+[global]
+index-url = https://pypi.tuna.tsinghua.edu.cn/simple
+[install]
+trusted-host=mirrors.aliyun.com
+```
