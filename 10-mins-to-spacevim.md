@@ -160,7 +160,6 @@ Install dependencies
 | `spc l s i` | open ipython                           |
 | `spc l r`   | run python code                        |
 
-K : show document like python docstring [如果有开启lsp layer的话]
 
 #### (2) Fuzzy finder
 
