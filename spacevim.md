@@ -50,6 +50,7 @@ sudo ln -s /usr/bin/nodejs /usr/bin/node
 19. 折叠代码的操作
 20. 对vim8.0以下不友好，好像会卡顿？
 21. 如何让它对长文本显示自动换行 `set wrap`
+22. autopair??
 
 ## 常用快捷键
 常用
@@ -179,21 +180,3 @@ python相关
 # 常见疑问
 * ctrl + s / ctrl + q 在terminal中是停止滚动和恢复滚动的意思
 
-
-
- hello, just reread your question, you want to split vertically file 
- in the directory of current file, in SpaceVim, you can use SPC f f 
- fuzzy find the file, the press Ctrl-v in fuzzy find buffer.
-here is record screen: https://asciinema.org/a/Q2l2Ia4bB11bs1eW4nXjhM8xo
-key bindings	description
-<Tab> / Ctrl-j	Select next line
-Shift-Tab / Ctrl-k	Select previous line
-j k	Leave Insert mode (Only for denite/unite)
-Ctrl-w	Delete backward path
-<Enter>	Run default action
-Ctrl-s	Open in a split
-Ctrl-v	Open in a vertical split
-Ctrl-t	Open in a new tab
-Ctrl-g	Exit unite
-so, the only thing you need to do is pressing SPC f f, inseart filename, 
-pressing Ctrl-v
