@@ -5,6 +5,13 @@ get back to your original vim if you don't like spacevim.
 
 Just need 10 minutes, have a try!!
 
+## Table of Content
+- [First Step: Install or Uninstall](#first-step-install-or-uninstall)
+- [Second Step: Basic idea](#second-step-basic-idea)
+- [Third Step: Getting start!](#third-step-getting-start)
+- [Fourth Step: Explore and customize](#fourth-step-explore-and-customize)
+- [Reference](#reference)
+
 ## First Step: Install or Uninstall
 
 **1. Install spacevim (Linux && macOS), it won't delete your original vim.**
@@ -211,6 +218,6 @@ Finally, in spacevim
 2. SpaceVim debug info `SPDebugInfo!` or `spc h I`, this is useful if you want 
 to report bugs or open a github issue
 
-# Reference
+## Reference
 1. [Spacevim tutorial (writen in Chinese)](https://everettjf.gitbooks.io/spacevimtutorial/content/install/4.html)
 2. [Hack-SpaceVim](https://github.com/Gabirel/Hack-SpaceVim)
