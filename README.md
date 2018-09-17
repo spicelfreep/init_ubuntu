@@ -133,3 +133,5 @@ index-url = https://pypi.tuna.tsinghua.edu.cn/simple
 [install]
 trusted-host=mirrors.aliyun.com
 ```
+# Tmux 
+[Tmux 复制文本到系统剪贴版](https://www.zhihu.com/question/52120702/answer/371470118)
