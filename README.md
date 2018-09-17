@@ -119,6 +119,7 @@ network ==> method > manual, socks host 127.0.0.1, 1080, then copy shadowsocks.j
 ```
 sslocal -c shadowsocks.json
 ```
+配置Chrome上的SwitchyOmega的方法（能够自动判断是否通过代理访问网站）http://www.cylong.com/blog/2017/04/09/chrome-SwitchyOmega/
 
 3. 无法长按某个键连续输入
 https://www.jianshu.com/p/db0d6f958274
