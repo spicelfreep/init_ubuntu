@@ -134,4 +134,29 @@ index-url = https://pypi.tuna.tsinghua.edu.cn/simple
 trusted-host=mirrors.aliyun.com
 ```
 # Tmux 
-[Tmux 复制文本到系统剪贴版](https://www.zhihu.com/question/52120702/answer/371470118)
+* [Tmux 复制文本到系统剪贴版](https://www.zhihu.com/question/52120702/answer/371470118)
+* [Tmux 保存工作环境以免重启电脑后要重新配置](https://zhuanlan.zhihu.com/p/24660412)
+
+安装方法：
+
+1. 把代码克隆到自己喜欢的目录，我这里以 /tmp 代替：
+
+    $ git clone https://github.com/tmux-plugins/tmux-resurrect /tmp
+    
+2. 在自己的 tmux 配置文件 ~/.tmux.conf 里，加上这一行：
+    ```
+    run-shell ~/tmp/resurrect.tmux
+    ```
+3. 最后载入这个新的配置：
+    ```
+    $ tmux source-file ~/.tmux.conf
+    ```
+使用方法：
+
+保存状态：
+
+    prefix + Ctrl-s
+恢复状态：
+
+    prefix + Ctrl-r
+这里的 prefix，是指 tmux 通用的功能设定键，一般切换或执行命令都会加上这个 prefix，默认是 Ctrl + b, 一般会修改成 Ctrl + a.
