@@ -96,6 +96,7 @@ function tools_install(){
 	sudo apt-get install meld
 	sudo apt-get install tree
 	sudo apt-get install audacity
+	sudo apt install unar # 用于解决ubuntu解压window文件乱码的情况，使用unar能自动检测编码
 }
 
 function gnome_theme(){
