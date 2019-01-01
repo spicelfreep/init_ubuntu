@@ -96,6 +96,11 @@ sudo apt-get install ultra-flat-icons
 7. Chrome 安装
 在这里下载对应的安装包https://www.google.cn/chrome/  然后用dpkg安装，如果有提示缺少依赖包，就先运行下apt-get -f install 然后再用dpkg安装一下即可
 
+8. linux下查单词，见https://github.com/kenshinji/yddict
+```
+npm install yddict -g
+```
+
 ## ubuntu 系统安装常见问题
 1. ubuntu 下制作ubuntu启动盘`sudo usb-creator-gtk` 或者使用 disks 因为：
 ```
