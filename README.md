@@ -96,10 +96,29 @@ sudo apt-get install ultra-flat-icons
 7. Chrome 安装
 在这里下载对应的安装包https://www.google.cn/chrome/  然后用dpkg安装，如果有提示缺少依赖包，就先运行下apt-get -f install 然后再用dpkg安装一下即可
 
-8. linux下查单词，见https://github.com/kenshinji/yddict
+8. linux下查单词(缺点是需要网络连接)，见https://github.com/kenshinji/yddict
 ```
 npm install yddict -g
 ```
+另外一种方法是使用sdcv
+```shell
+$ sudo apt install sdcv
+```
+下载离线词典：访问 `http://download.huzheng.org/zh_CN/`, 选择词典并下载, e.g. 牛津高阶英汉双解。
+
+**查询sdcv说明书**
+```shell
+$ man sdcv
+```
+得知词典的放置路径为`$(HOME)/.startdict/dic`，因此将词典文件拷贝至`$(HOME)/.startdict/dic`并解压
+```shell
+$ tar xvf stardict-oald-cn-2.4.2.tar.bz2
+```
+**使用方式**
+```shell
+$ sdcv memory
+```
+
 
 ## ubuntu 系统安装常见问题
 1. ubuntu 下制作ubuntu启动盘`sudo usb-creator-gtk` 或者使用 disks 因为：
