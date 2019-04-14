@@ -151,3 +151,25 @@ filetype plugin indent on     " required
     " NOTE: comments after Plugin commands are not allowed.
     " Put your stuff after this line
     "
+" -------ubuntu下解决中文输入法返回normal环境的切换问题---------
+" ------参考链接：https://www.jianshu.com/p/d6067b47cec4-------
+let g:input_toggle = 1
+function! Fcitx2en()
+   let s:input_status = system("fcitx-remote")
+   if s:input_status == 2
+      let g:input_toggle = 1
+      let l:a = system("fcitx-remote -c")
+   endif
+endfunction
+
+function! Fcitx2zh()
+   let s:input_status = system("fcitx-remote")
+   if s:input_status != 2 && g:input_toggle == 1
+      let l:a = system("fcitx-remote -o")
+      let g:input_toggle = 0
+   endif
+endfunction
+
+set timeoutlen=150
+autocmd InsertLeave * call Fcitx2en()
+"autocmd InsertEnter * call Fcitx2zh()
