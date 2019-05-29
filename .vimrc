@@ -29,6 +29,13 @@ au BufNewFile,BufRead *.js,*.html,*.css,*.vue
 \ set softtabstop=2 |
 \ set shiftwidth=2
 
+" --------------记住上一次修改位置----------
+" Uncomment the following to have Vim jump to the last position when
+" reopening a file
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
+
 filetype off                     " Vundle 插件required
 
 " -------------------Vundle设置----------------------------
