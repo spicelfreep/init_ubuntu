@@ -47,7 +47,7 @@ Plugin 'gmarik/vundle'
 "Plugin 'vim-syntastic/syntastic'        "自动检查语法错误-但这个感觉不大好
 "Plugin 'w0rp/ale'                        "语法检查，记得vim version >8.0
 Plugin 'Lokaltog/vim-powerline'          "这个可以让vim的状态栏变得很漂亮
-"Plugin 'Valloric/YouCompleteMe'          "自动补全插件，杀手级插件
+Plugin 'Valloric/YouCompleteMe'          "自动补全插件，杀手级插件
 Plugin 'bling/vim-airline'               "让vim下面的信息条更好看
 Plugin 'flazz/vim-colorschemes'          "vim schemes颜色主题'
 Plugin 'nvie/vim-flake8'                 "PEP8 checking
@@ -58,7 +58,7 @@ Plugin 'Yggdroot/indentLine'             "用|来展示缩进对齐
 Plugin 'jiangmiao/auto-pairs'            "自动添加对应的括号
 Plugin 'kien/ctrlp.vim'                  " ctrl + p to fuzzy search file in vim
 
-"Plugin 'python-mode/python-mode'         " python ide help doc see :help python-mode
+Plugin 'python-mode/python-mode'         " python ide help doc see :help python-mode
 "Plugin 'posva/vim-vue'                   "vue.js syntax highlight
 Plugin 'plasticboy/vim-markdown'         "让vim支持markdown语法的高亮
 " ---------------自动折叠------------------
