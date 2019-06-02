@@ -7,15 +7,19 @@
 " sudo apt install vim
 " 卸载vim 8.0 的方法
 " sudo apt install ppa-purge && sudo ppa-purge ppa:jonathonf/vim
+" ----------你可以可以同时安装SpaceVim----
+"  git clone https://github.com/SpaceVim/SpaceVim.git ~/.SpaceVim
+"  alias svim='vim -u ~/.SpaceVim/vimrc'
 "---------基础偏好设置-------------
 "<leader> default measn key '\'
-" let mapleader='\'
+"let mapleader=','
 syntax on            " 开启语法高亮
 set term=screen-256color
 set nocompatible     " 去掉vi的一致性
 set laststatus=2     " 命令行为2行
 set nu               " 设置显示行号
 set mouse=a          " 启用鼠标
+set relativenumber   " 设置相对行号 
 set hlsearch         " 高亮搜索结果
 set ignorecase       " 搜索时忽略大小写
 set cursorline       " 突出显示当前行：在当前行下显示横线，方便确认位置
@@ -71,29 +75,31 @@ Plugin 'bling/vim-airline'               "让vim下面的信息条更好看
 Plugin 'flazz/vim-colorschemes'          "vim schemes颜色主题
 Plugin 'nvie/vim-flake8'                 "PEP8 checking
 Plugin 'scrooloose/nerdtree'             "browse file directory in vim
-"Plugin 'scrooloose/nerdcommenter'        " quick comment using <leader>ci
+Plugin 'scrooloose/nerdcommenter'        " quick comment using <leader>ci 
 Plugin 'skywind3000/asyncrun.vim'        "在文件内执行Python代码
 Plugin 'Yggdroot/indentLine'             "用|来展示缩进对齐
 Plugin 'jiangmiao/auto-pairs'            "自动添加对应的括号
 Plugin 'kien/ctrlp.vim'                  " ctrl + p to fuzzy search file in vim
 Plugin 'tell-k/vim-autopep8'             " 输入:Autopep8 就可以自动格式化python代码
 
-"Plugin 'python-mode/python-mode'         " python ide help doc see :help python-mode
+Plugin 'python-mode/python-mode'         " python ide help doc see :help python-mode
 "Plugin 'posva/vim-vue'                   "vue.js syntax highlight
 Plugin 'plasticboy/vim-markdown'         "让vim支持markdown语法的高亮
 Plugin 'tmhedberg/SimpylFold'            " 简单快速折叠
 " ---------------自动折叠------------------
 " Enable folding
 set foldmethod=indent
+" 如果不想默认折叠，请将下面的注释掉
 set foldlevel=99
+"
 " Enable folding with the spacebar, btw, the default setting is za
-nnoremap <space> za
+"nnoremap <space> za
+"
 " 希望看到折叠代码的文档字符串？
 " let g:SimpylFold_docstring_preview=1
 
 " ----------------python-mode 设置 ------------
 let g:pymode_python = 'python3'
-
 
 " ---------------颜色主题------------------
 colorscheme molokai
@@ -113,9 +119,9 @@ let g:pymode_python = 'python3'
 let g:pymode_syntax_space_errors = 0
 " use python3 syntax checking
  
- 
+" 
 "----------注释comment-------nerdcommenter
-"map <F4> <leader>ci <CR> 
+map <C-l> <leader>ci<CR> 
 "用F4来取代<leader>ci作注释
 
 " ---------nerdtree 设置 ------------

@@ -112,6 +112,11 @@ function gnome_theme(){
 	sudo apt-get install ultra-flat-icons
 }
 
+function tmux_install(){
+	# 以便能够让tmux复制的内容添加到系统剪贴板
+	sudo apt-get install xclip
+}
+
 #function manual_install(){
 #	# Attention ! You should manally install !
 #	# (1) Jupyter notebook extensions
