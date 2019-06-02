@@ -122,15 +122,18 @@ function gnome_theme(){
 echo -e "\033[44;37;5m-----Step 1: Basic applicaiton installi-----------------------------\033[0m"
 echo "apt-get update......"
 # sudo apt-get -y update > /dev/null #update apt source 
-sudo apt-get -y update 
+#sudo apt-get -y update 
 echo "apt-get upgrade......"
-sudo apt-get -y upgrade > /dev/null  #update the app that have been installed 
-echo "apt-get dist-upgrade......"
-sudo apt-get -y dist-upgrade > /dev/null #force the installation of packages's new dependencies
+#sudo apt-get -y upgrade > /dev/null  #update the app that have been installed 
+#echo "apt-get dist-upgrade......"
+#sudo apt-get -y dist-upgrade > /dev/null #force the installation of packages's new dependencies
 
 
 # -----------MAIN PART-----------
-gnome_theme
+#gnome_theme
+#git_install
+#vim_install
+tools_install
 
 echo "Sogou pinyin: if you install this, enter 'fcitx-config-gtk3' in the terminal and add sogou pinyin to input method, after reboot, it should work "
 echo "shadowsocks see README.md"

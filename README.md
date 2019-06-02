@@ -7,7 +7,9 @@
 ## 一些说明
 
 ### 0 初始设置
-在system setting -> software update -> ubuntu software -> Download from那里设置 http://mirrors.aliyun.com/ubuntu 可以提高速度
+* 在system setting -> software update -> ubuntu software -> Download from那里设置 http://mirrors.aliyun.com/ubuntu 可以提高速度
+
+* 截图ctrl+alt+a:将`gnome-screenshot -ac`加入到系统 system setting -> key board -> shortcut里面的command,设置为ctrl+alt+a即可
 ### 1 基础软件
 **git** : 除了基本的用户名和邮箱设置，增加了一个十分有用的命令别名：`git lg`，用于简洁而美观地输出 git log
 
@@ -88,8 +90,6 @@ sudo apt-get install ultra-flat-icons
 ```
 然后进入unity-tweak-tool进行相应的设置
 5. 其他设置
-* 截图ctrl+alt+a 将`gnome-screenshot
-    -ac`加入到系统的shortcut里面,设置为ctrl+alt+a即可
 * chrome 安装有道划词插件
 
 6. 服务器端的设置

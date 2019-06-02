@@ -1,5 +1,15 @@
-"<leader> default measn key '\'
+" 这个vim配置参考了：https://www.jianshu.com/p/f0513d18742a/
+"
+"
+" 安装vim 8.0 的方法
+" sudo add-apt-repository ppa:jonathonf/vim
+" sudo apt update
+" sudo apt install vim
+" 卸载vim 8.0 的方法
+" sudo apt install ppa-purge && sudo ppa-purge ppa:jonathonf/vim
 "---------基础偏好设置-------------
+"<leader> default measn key '\'
+" let mapleader='\'
 syntax on            " 开启语法高亮
 set term=screen-256color
 set nocompatible     " 去掉vi的一致性
@@ -9,9 +19,11 @@ set mouse=a          " 启用鼠标
 set hlsearch         " 高亮搜索结果
 set ignorecase       " 搜索时忽略大小写
 set cursorline       " 突出显示当前行：在当前行下显示横线，方便确认位置
-"set cursorcolumn     " 突出显示当前列
+set cursorcolumn     " 突出显示当前列
 set encoding=utf-8   " 使用 utf-8 编码
 set showmatch        " 显示匹配的括号
+set smartcase        " 输入有大写的英文字母时，变成大小写敏感
+set incsearch        " 搜索时自动匹配候选对象
 "set background=dark  " 设置背景颜色
 " ------python pep8 indent---------------- 
 au BufNewFile,BufRead *.py
@@ -22,6 +34,7 @@ au BufNewFile,BufRead *.py
 \ set softtabstop=4 " insert/delete 4 spaces when hitting a TAB/BACKSPACE
 \ set shiftround    " round indent to multiple of 'shiftwidth'
 \ set autoindent    " align the new line indent with the previous line
+
 "end of set python
 
 au BufNewFile,BufRead *.js,*.html,*.css,*.vue
@@ -51,35 +64,45 @@ Plugin 'gmarik/vundle'
 
 " ------------vim 插件推荐--------------
 "  Ie would be better to manually instal YouCompleteMe and python-mode plugin
-"Plugin 'vim-syntastic/syntastic'        "自动检查语法错误-但这个感觉不大好
-"Plugin 'w0rp/ale'                        "语法检查，记得vim version >8.0
-Plugin 'Lokaltog/vim-powerline'          "这个可以让vim的状态栏变得很漂亮
+"Plugin 'vim-syntastic/syntastic'        " 自动检查语法错误-但这个感觉不大好，比ale要慢
+Plugin 'w0rp/ale'                        "语法检查，记得vim version >8.0
 Plugin 'Valloric/YouCompleteMe'          "自动补全插件，杀手级插件
 Plugin 'bling/vim-airline'               "让vim下面的信息条更好看
-Plugin 'flazz/vim-colorschemes'          "vim schemes颜色主题'
+Plugin 'flazz/vim-colorschemes'          "vim schemes颜色主题
 Plugin 'nvie/vim-flake8'                 "PEP8 checking
 Plugin 'scrooloose/nerdtree'             "browse file directory in vim
-Plugin 'scrooloose/nerdcommenter'        " quick comment using <leader>ci
+"Plugin 'scrooloose/nerdcommenter'        " quick comment using <leader>ci
 Plugin 'skywind3000/asyncrun.vim'        "在文件内执行Python代码
 Plugin 'Yggdroot/indentLine'             "用|来展示缩进对齐
 Plugin 'jiangmiao/auto-pairs'            "自动添加对应的括号
 Plugin 'kien/ctrlp.vim'                  " ctrl + p to fuzzy search file in vim
+Plugin 'tell-k/vim-autopep8'             " 输入:Autopep8 就可以自动格式化python代码
 
-Plugin 'python-mode/python-mode'         " python ide help doc see :help python-mode
+"Plugin 'python-mode/python-mode'         " python ide help doc see :help python-mode
 "Plugin 'posva/vim-vue'                   "vue.js syntax highlight
 Plugin 'plasticboy/vim-markdown'         "让vim支持markdown语法的高亮
+Plugin 'tmhedberg/SimpylFold'            " 简单快速折叠
 " ---------------自动折叠------------------
 " Enable folding
 set foldmethod=indent
 set foldlevel=99
 " Enable folding with the spacebar, btw, the default setting is za
 nnoremap <space> za
-Plugin 'tmhedberg/SimpylFold'
 " 希望看到折叠代码的文档字符串？
 " let g:SimpylFold_docstring_preview=1
 
+" ----------------python-mode 设置 ------------
+let g:pymode_python = 'python3'
+
+
 " ---------------颜色主题------------------
 colorscheme molokai
+
+" --------------YouCompleteMe配置---------
+" nnoremap <leader>gl :YcmCompleter GoToDeclaration<CR>
+" nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
+" nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
+" map <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 " --------------缩进对齐 ----Yggdroot/indentLine --------
 let g:indentLine_char='┆'        "缩进指示线，这个对于python很有用
@@ -115,7 +138,8 @@ let g:asyncrun_open = 6
 "
 " ring the bell to notify you job finished
 " let g:asyncrun_bell = 1
-"
+
+" ----------F10 打开quickfix window ----
 "" F10 to toggle quickfix window
 nnoremap <F10> :call asyncrun#quickfix_toggle(6)<cr>"
 " "
