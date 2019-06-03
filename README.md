@@ -16,6 +16,9 @@
 **vim** :
 进行基础的配置，使用vundle管理vim插件，并自动安装了常用的插件，同时也配置好了轻量级的Python编程环境，具体你可以在.vimrc中进行设置，如果没有设置，则默认使用推荐的配置。  
 
+**neovim安装**
+https://github.com/neovim/neovim/wiki/Installing-Neovim#ubuntu
+
 注意：YouCompleteMe 需要到 这里 去看 安装说明https://github.com/Valloric/YouCompleteMe
 
 xournal: pdf阅读器，支持给pdf做笔记，看论文的时候很有用
