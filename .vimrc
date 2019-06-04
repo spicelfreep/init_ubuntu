@@ -46,6 +46,12 @@ au BufNewFile,BufRead *.js,*.html,*.css,*.vue
 \ set softtabstop=2 |
 \ set shiftwidth=2
 
+" ------------保存文件后依然能undo-----注意你首先需要创建一个文件夹 $HOME/.vim/undo-----
+if has('persistent_undo')      "check if your vim version supports it
+  set undofile                 "turn on the feature  
+  set undodir=$HOME/.vim/undo  "directory where the undo files will be stored
+  endif  
+
 " --------------记住上一次修改位置----------
 " Uncomment the following to have Vim jump to the last position when
 " reopening a file
@@ -86,6 +92,10 @@ Plugin 'python-mode/python-mode'         " python ide help doc see :help python-
 "Plugin 'posva/vim-vue'                   "vue.js syntax highlight
 Plugin 'plasticboy/vim-markdown'         "让vim支持markdown语法的高亮
 Plugin 'tmhedberg/SimpylFold'            " 简单快速折叠
+" ----------------leader 设置 -----------------
+" nnoremap <leader>d dd
+
+
 " ---------------自动折叠------------------
 " Enable folding
 set foldmethod=indent
@@ -121,7 +131,8 @@ let g:pymode_syntax_space_errors = 0
  
 " 
 "----------注释comment-------nerdcommenter
-map <C-l> <leader>ci<CR> 
+map <C-l> <leader>ci
+"map <C-l> <leader>ci<CR>  "同时跳到下一行
 "用F4来取代<leader>ci作注释
 
 " ---------nerdtree 设置 ------------

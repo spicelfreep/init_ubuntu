@@ -18,6 +18,21 @@ username=`users`
 mkdir -p ~/Downloads
 # function
 
+function neovim_install(){
+	# not recommand
+	sudo apt-get install software-properties-common
+	sudo add-apt-repository ppa:neovim-ppa/stable
+	sudo apt-get update
+	sudo apt-get install neovim
+	# set neovim as default
+	sudo update-alternatives --install /usr/bin/vi vi /usr/bin/nvim 60
+	sudo update-alternatives --config vi
+	sudo update-alternatives --install /usr/bin/vim vim /usr/bin/nvim 60
+	sudo update-alternatives --config vim
+	sudo update-alternatives --install /usr/bin/editor editor /usr/bin/nvim 60
+	sudo update-alternatives --config editor
+}
+
 function git_install(){
 	dpkg -l | grep "[]git[]" > /dev/null
 	if [ $? -eq 0 ];then
@@ -53,6 +68,12 @@ function git_install(){
 	fi
 }
 
+function vim8_install(){
+	sudo add-apt-repository ppa:jonathonf/vim
+	sudo apt update
+	sudo apt install vim
+}
+
 function vim_install(){
 	dpkg -l|grep vim > /dev/null
 	if [ $? -eq 0 ];then
@@ -65,6 +86,7 @@ function vim_install(){
 			cp ~/init_ubuntu/.vimrc ~/.vimrc
 			sudo rm -rf ~/.vim
 			mkdir -p ~/.vim/bundle
+			mkdir -p ~/.vim/undo
 			git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 			vim +PluginInstall +qall
 		else
@@ -137,8 +159,8 @@ echo "apt-get upgrade......"
 # -----------MAIN PART-----------
 #gnome_theme
 #git_install
-#vim_install
-tools_install
+vim8_install
+#tools_install
 
 echo "Sogou pinyin: if you install this, enter 'fcitx-config-gtk3' in the terminal and add sogou pinyin to input method, after reboot, it should work "
 echo "shadowsocks see README.md"
