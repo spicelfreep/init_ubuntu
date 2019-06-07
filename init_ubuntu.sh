@@ -143,7 +143,21 @@ function oh_my_zsh_install(){
 	sudo apt install zsh
 	sudo apt install curl
 	sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-	#cp ~/init_ubuntu/.zshrc ~/.zshrc
+	cp ~/init_ubuntu/.zshrc ~/.zshrc
+	# 设置默认为zsh终端，否则在bash下输入zsh开启，设置后需要重启电脑生效
+	#sudo chsh -s $(which zsh)
+	# 安装powerline 字体
+	sudo apt-get install fonts-powerline
+	# 另外一种安装 fonts-powerline的方式
+	#git clone https://github.com/powerline/fonts.git --depth=1
+	#cd fonts
+	#./install.sh
+	# 安装插件：inrc：zsh的终端自动补全插件，但听网上的人说这个插件可能会引起一些某些冲突？
+	mkdir -p $ZSH_CUSTOM/plugins/incr
+	cd $ZSH_CUSTOM/plugins/incr && curl http://mimosa-pudica.net/src/incr-0.2.zsh > incr-0.2.zsh
+	cd ~ && source .zshrc
+	# 安装插件： autojump：j 跳转到之前访问的目录
+	# 貌似没有必要，暂时不管，用d 或者数字代替就好
 }
 
 #function manual_install(){
