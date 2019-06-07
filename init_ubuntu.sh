@@ -135,9 +135,18 @@ function gnome_theme(){
 
 function tmux_install(){
 	sudo apt-get install tmux
+	cd ~ && mkdir -p .tmux && cd ~/.tmux && mkdir tmux-resurrect
 	sudo cp -f ~/init_ubuntu/.tmux.conf ~/
 	# 以便能够让tmux复制的内容添加到系统剪贴板
 	sudo apt-get install xclip
+	# 以便能够在电脑重启之后重新开启之前的tmux
+	git clone https://github.com/tmux-plugins/tmux-resurrect ~/.tmux/tmux-resurrect
+    	tmux source-file ~/.tmux.conf
+	# 使用方法：
+	# 保存状态：
+	#    prefix + Ctrl-s
+	# 恢复状态：
+	#   prefix + Ctrl-r
 }
 function oh_my_zsh_install(){
 	sudo apt install zsh
@@ -158,6 +167,7 @@ function oh_my_zsh_install(){
 	cd ~ && source .zshrc
 	# 安装插件： autojump：j 跳转到之前访问的目录
 	# 貌似没有必要，暂时不管，用d 或者数字代替就好
+	echo -e "\033[44;37;5m --You need to copy some of your .bashrc alias and anaconda path to .zshrc to make sure everything like your original .bashrc ---\033[0m"
 }
 
 #function manual_install(){
@@ -180,7 +190,8 @@ echo "apt-get upgrade......"
 # -----------MAIN PART-----------
 #gnome_theme
 #git_install
-vim8_install
+#vim8_install
+tmux_install
 #tools_install
 
 echo "Sogou pinyin: if you install this, enter 'fcitx-config-gtk3' in the terminal and add sogou pinyin to input method, after reboot, it should work "
