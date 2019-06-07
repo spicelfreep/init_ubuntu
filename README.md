@@ -189,3 +189,10 @@ trusted-host=mirrors.aliyun.com
 
     prefix + Ctrl-r
 这里的 prefix，是指 tmux 通用的功能设定键，一般切换或执行命令都会加上这个 prefix，默认是 Ctrl + b, 一般会修改成 Ctrl + a.
+
+### pycharm
+* 安装Pycharm
+到官网去下载就好了，然后
+sudo ln -s /home/jackie/Downloads/pycharm-community-2019.1.3/bin/pycharm.sh /usr/bin/pycharm
+
++类似这样，就可以在命令行执行了

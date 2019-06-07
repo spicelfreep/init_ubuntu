@@ -109,8 +109,6 @@ function tools_install(){
 	apt-get -y install tree > /dev/null
 	apt-get -y install unrar unzip > /dev/null
 	#sudo apt-get install adobe-flashplugin
-	sudo apt-get install tmux
-	sudo cp -f ~/init_ubuntu/.tmux.conf ~/
 	sudo apt install htop
 	#sudo apt-get install p7zip-full # support compress 7z file, usage`7z x file.7z`
 	# xournal is a pdf reader which could add note easily
@@ -136,8 +134,16 @@ function gnome_theme(){
 }
 
 function tmux_install(){
+	sudo apt-get install tmux
+	sudo cp -f ~/init_ubuntu/.tmux.conf ~/
 	# 以便能够让tmux复制的内容添加到系统剪贴板
 	sudo apt-get install xclip
+}
+function oh_my_zsh_install(){
+	sudo apt install zsh
+	sudo apt install curl
+	sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+	#cp ~/init_ubuntu/.zshrc ~/.zshrc
 }
 
 #function manual_install(){
