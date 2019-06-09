@@ -170,6 +170,11 @@ function oh_my_zsh_install(){
 	echo -e "\033[44;37;5m --You need to copy some of your .bashrc alias and anaconda path to .zshrc to make sure everything like your original .bashrc ---\033[0m"
 }
 
+function pip_install{
+	# 更改pip镜像源以便加快pip install 速度
+	cp -r ~/init_ubuntu/.pip ~
+}
+
 #function manual_install(){
 #	# Attention ! You should manally install !
 #	# (1) Jupyter notebook extensions
