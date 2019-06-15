@@ -196,3 +196,23 @@ trusted-host=mirrors.aliyun.com
 sudo ln -s /home/jackie/Downloads/pycharm-community-2019.1.3/bin/pycharm.sh /usr/bin/pycharm
 
 +类似这样，就可以在命令行执行了
+
+# jupyter notebook server 
+
+$ jupyter notebook --generate-config
+$ python
+>>> from notebook.auth import passwd
+>>> passwd()
+Enter password:
+Verify password:
+Out: 'shal:47183470174087f2349xxxxx'
+$ vi ~/.jupyter/jupyter_notebook_config.py
+
+	c.NotebookApp.ip = '0.0.0.0'
+	#设置可访问的ip为任意。
+	c.NotebookApp.open_browser = False
+	#设置默认不打开浏览器
+	c.NotebookApp.password = u'passwd生成的密文'
+	 
+	c.NotebookApp.port = 8888
+	c.NotebookApp.notebook_dir = '/your/file/saved/path/'

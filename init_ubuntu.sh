@@ -69,9 +69,10 @@ function git_install(){
 }
 
 function vim8_install(){
+	# warning: this make take a long time due to network problem
 	sudo add-apt-repository ppa:jonathonf/vim
 	sudo apt update
-	sudo apt install vim
+	sudo apt install -y vim
 }
 
 function vim_install(){
@@ -109,7 +110,7 @@ function tools_install(){
 	apt-get -y install tree > /dev/null
 	apt-get -y install unrar unzip > /dev/null
 	#sudo apt-get install adobe-flashplugin
-	sudo apt install htop
+	sudo apt install -y htop
 	#sudo apt-get install p7zip-full # support compress 7z file, usage`7z x file.7z`
 	# xournal is a pdf reader which could add note easily
 	#sudo apt-get install xournal 
@@ -162,19 +163,34 @@ function oh_my_zsh_install(){
 	#cd fonts
 	#./install.sh
 	# 安装插件：inrc：zsh的终端自动补全插件，但听网上的人说这个插件可能会引起一些某些冲突？
-	mkdir -p $ZSH_CUSTOM/plugins/incr
-	cd $ZSH_CUSTOM/plugins/incr && curl http://mimosa-pudica.net/src/incr-0.2.zsh > incr-0.2.zsh
-	cd ~ && source .zshrc
+	# mkdir -p $ZSH_CUSTOM/plugins/incr
+	# cd $ZSH_CUSTOM/plugins/incr && curl http://mimosa-pudica.net/src/incr-0.2.zsh > incr-0.2.zsh
+	# cd ~ && source .zshrc
 	# 安装插件： autojump：j 跳转到之前访问的目录
 	# 貌似没有必要，暂时不管，用d 或者数字代替就好
 	echo -e "\033[44;37;5m --You need to copy some of your .bashrc alias and anaconda path to .zshrc to make sure everything like your original .bashrc ---\033[0m"
 }
 
-function pip_install{
-	# 更改pip镜像源以便加快pip install 速度
-	cp -r ~/init_ubuntu/.pip ~
+#更改pip镜像源以便加快pip install 速度
+function pip_install(){
+	cp -r ~/init_ubuntu/.pip ~/
 }
-
+function change_ubuntu_apt_source(){
+	Codename=$( (lsb_release -a)|awk '{print $2}'|tail -n 1 ) 
+	sudo echo "
+	deb http://mirrors.aliyun.com/ubuntu/ $Codename main multiverse restricted universe 
+	deb http://mirrors.aliyun.com/ubuntu/ $Codename-backports main multiverse restricted universe
+	deb http://mirrors.aliyun.com/ubuntu/ $Codename-proposed main multiverse restricted universe
+	deb http://mirrors.aliyun.com/ubuntu/ $Codename-security main multiverse restricted universe
+	deb http://mirrors.aliyun.com/ubuntu/ $Codename-updates main multiverse restricted universe
+	deb-src http://mirrors.aliyun.com/ubuntu/ $Codename main multiverse restricted universe
+	deb-src http://mirrors.aliyun.com/ubuntu/ $Codename-backports main multiverse restricted universe
+	deb-src http://mirrors.aliyun.com/ubuntu/ $Codename-proposed main multiverse restricted universe
+	deb-src http://mirrors.aliyun.com/ubuntu/ $Codename-security main multiverse restricted universe
+	deb-src http://mirrors.aliyun.com/ubuntu/ $Codename-updates main multiverse restricted universe
+	">sources.list
+	sudo apt update
+}
 #function manual_install(){
 #	# Attention ! You should manally install !
 #	# (1) Jupyter notebook extensions
@@ -195,9 +211,12 @@ echo "apt-get upgrade......"
 # -----------MAIN PART-----------
 #gnome_theme
 #git_install
+#vim_install
 #vim8_install
-tmux_install
+#tmux_install
 #tools_install
+#oh_my_zsh_install
+change_ubuntu_apt_source
 
 echo "Sogou pinyin: if you install this, enter 'fcitx-config-gtk3' in the terminal and add sogou pinyin to input method, after reboot, it should work "
 echo "shadowsocks see README.md"

@@ -76,31 +76,31 @@ Plugin 'gmarik/vundle'
 "  Ie would be better to manually instal YouCompleteMe and python-mode plugin
 "Plugin 'vim-syntastic/syntastic'        " 自动检查语法错误-但这个感觉不大好，比ale要慢
 Plugin 'w0rp/ale'                        "语法检查，记得vim version >8.0
-Plugin 'Valloric/YouCompleteMe'          "自动补全插件，杀手级插件
 Plugin 'bling/vim-airline'               "让vim下面的信息条更好看
 Plugin 'flazz/vim-colorschemes'          "vim schemes颜色主题
-Plugin 'nvie/vim-flake8'                 "PEP8 checking
+"Plugin 'nvie/vim-flake8'                 "PEP8 checking
 Plugin 'scrooloose/nerdtree'             "browse file directory in vim
-Plugin 'scrooloose/nerdcommenter'        " quick comment using <leader>ci 
+"Plugin 'scrooloose/nerdcommenter'        " quick comment using <leader>ci 
 Plugin 'skywind3000/asyncrun.vim'        "在文件内执行Python代码
 Plugin 'Yggdroot/indentLine'             "用|来展示缩进对齐
 Plugin 'jiangmiao/auto-pairs'            "自动添加对应的括号
 Plugin 'kien/ctrlp.vim'                  " ctrl + p to fuzzy search file in vim
-Plugin 'tell-k/vim-autopep8'             " 输入:Autopep8 就可以自动格式化python代码
+"Plugin 'tell-k/vim-autopep8'             " 输入:Autopep8 就可以自动格式化python代码
 
-Plugin 'python-mode/python-mode'         " python ide help doc see :help python-mode
+"Plugin 'python-mode/python-mode'         " python ide help doc see :help python-mode
 "Plugin 'posva/vim-vue'                   "vue.js syntax highlight
-Plugin 'plasticboy/vim-markdown'         "让vim支持markdown语法的高亮
-Plugin 'tmhedberg/SimpylFold'            " 简单快速折叠
+"Plugin 'plasticboy/vim-markdown'         "让vim支持markdown语法的高亮
+"Plugin 'tmhedberg/SimpylFold'            " 简单快速折叠
+Plugin 'Valloric/YouCompleteMe'          "自动补全插件，杀手级插件
 " ----------------leader 设置 -----------------
 " nnoremap <leader>d dd
 
 
 " ---------------自动折叠------------------
 " Enable folding
-set foldmethod=indent
+"set foldmethod=indent
 " 如果不想默认折叠，请将下面的注释掉
-set foldlevel=99
+"set foldlevel=99
 "
 " Enable folding with the spacebar, btw, the default setting is za
 "nnoremap <space> za
@@ -109,7 +109,7 @@ set foldlevel=99
 " let g:SimpylFold_docstring_preview=1
 
 " ----------------python-mode 设置 ------------
-let g:pymode_python = 'python3'
+"let g:pymode_python = 'python3'
 
 " ---------------颜色主题------------------
 colorscheme molokai
