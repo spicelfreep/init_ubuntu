@@ -97,6 +97,9 @@ function vim_install(){
 		# install vim 
 		sudo apt-get -y install vim
 		sudo apt-get -y install vim-gtk 
+		# 安装jedi插件
+		sudp apt-get -y install pip3
+		pip3 install jedi
 		cp ~/init_ubuntu/.vimrc ~/.vimrc
 		mkdir -p ~/.vim/bundle
 		git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
