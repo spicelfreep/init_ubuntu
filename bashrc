@@ -10,3 +10,7 @@ alias gst='git status'
 # 设置常用的文件夹
 export ff='/home/jackie/svn/ds_utils/trunk/ds_frontend'
 export pp='/home/jackie/svn/ds_utils/trunk/ds_pinyin'
+export zh='/home/jackie/svn/corpus/NLP_data/zh'
+export ee='/home/jackie/svn/ds_utils/trunk/auto_evaluation_scripts'
+export mm='/home/jackie/svn/ds_utils/trunk/ds_models'
+
