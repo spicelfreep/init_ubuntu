@@ -92,6 +92,17 @@ Plugin 'kien/ctrlp.vim'                  " ctrl + p to fuzzy search file in vim
 "Plugin 'plasticboy/vim-markdown'         "让vim支持markdown语法的高亮
 "Plugin 'tmhedberg/SimpylFold'            " 简单快速折叠
 Plugin 'Valloric/YouCompleteMe'          "自动补全插件，杀手级插件
+Plugin 'SirVer/ultisnips'                "vim snippets engine
+Plugin 'honza/vim-snippets'              " Snippets are separated from the engine. Add this if you want them:
+" --------------vim snippet setting -----------------------
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+"let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" If you want :UltiSnipsEdit to split your window.
+" let g:UltiSnipsEditSplit="vertical"
 " ----------------leader 设置 -----------------
 " nnoremap <leader>d dd
 
