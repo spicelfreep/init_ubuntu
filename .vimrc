@@ -70,7 +70,7 @@ call vundle#rc()
     "call vundle#rc(path)
 
     " let Vundle manage Vundle, required
-Plugin 'gmarik/vundle'
+Plugin 'VundleVim/Vundle.vim'
 
 " ------------vim 插件推荐--------------
 "  Ie would be better to manually instal YouCompleteMe and python-mode plugin
