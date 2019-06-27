@@ -124,6 +124,13 @@ function tools_install(){
 	sudo apt install unar # 用于解决ubuntu解压window文件乱码的情况，使用unar能自动检测编码
 }
 
+function screenshot(){
+	# https://github.com/lupoDharkael/flameshot
+	sudo apt install flameshot
+	# /usr/bin/flameshot gui
+	# 可以绑定这个命令到快捷键
+}
+
 function gnome_theme(){
 	# install unity-tweak-tool
 	sudo apt-get install unity-tweak-tool
