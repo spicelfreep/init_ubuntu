@@ -139,7 +139,10 @@ Choose the Ubuntu installation ISO file and the USB drive to write it to and sta
 see website : https://blog.csdn.net/superbfly/article/details/54950451
 https://blog.huihut.com/2017/08/25/LinuxInstallConfigShadowsocksClient/
 ```
-sudo apt-get install python-pip 
+# 安装python环境
+可以用：sudo apt-get install python-pip 
+或者anaconda
+
 pip install git+https://github.com/shadowsocks/shadowsocks.git@master 
 ```
 network ==> method > manual, socks host 127.0.0.1, 1080, then copy shadowsocks.json, 
@@ -148,7 +151,11 @@ network ==> method > manual, socks host 127.0.0.1, 1080, then copy shadowsocks.j
 ```
 sslocal -c shadowsocks.json
 ```
+
+https://github.com/FelisCatus/SwitchyOmega/wiki/GFWList
+
 配置Chrome上的SwitchyOmega的方法（能够自动判断是否通过代理访问网站）http://www.cylong.com/blog/2017/04/09/chrome-SwitchyOmega/
+
 
 3. 无法长按某个键连续输入
 https://www.jianshu.com/p/db0d6f958274
@@ -196,3 +203,23 @@ trusted-host=mirrors.aliyun.com
 sudo ln -s /home/jackie/Downloads/pycharm-community-2019.1.3/bin/pycharm.sh /usr/bin/pycharm
 
 +类似这样，就可以在命令行执行了
+
+# jupyter notebook server 
+
+$ jupyter notebook --generate-config
+$ python
+>>> from notebook.auth import passwd
+>>> passwd()
+Enter password:
+Verify password:
+Out: 'shal:47183470174087f2349xxxxx'
+$ vi ~/.jupyter/jupyter_notebook_config.py
+
+	c.NotebookApp.ip = '0.0.0.0'
+	#设置可访问的ip为任意。
+	c.NotebookApp.open_browser = False
+	#设置默认不打开浏览器
+	c.NotebookApp.password = u'passwd生成的密文'
+	 
+	c.NotebookApp.port = 8888
+	c.NotebookApp.notebook_dir = '/your/file/saved/path/'
