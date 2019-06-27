@@ -148,6 +148,7 @@ function tmux_install(){
 	# 恢复状态：
 	#   prefix + Ctrl-r
 }
+
 function oh_my_zsh_install(){
 	sudo apt install zsh
 	sudo apt install curl
@@ -156,7 +157,7 @@ function oh_my_zsh_install(){
 	# 设置默认为zsh终端，否则在bash下输入zsh开启，设置后需要重启电脑生效
 	#sudo chsh -s $(which zsh)
 	# 安装powerline 字体
-	sudo apt-get install fonts-powerline
+	# sudo apt-get install fonts-powerline
 	# 另外一种安装 fonts-powerline的方式
 	#git clone https://github.com/powerline/fonts.git --depth=1
 	#cd fonts
@@ -170,9 +171,9 @@ function oh_my_zsh_install(){
 	echo -e "\033[44;37;5m --You need to copy some of your .bashrc alias and anaconda path to .zshrc to make sure everything like your original .bashrc ---\033[0m"
 }
 
-function pip_install{
-	# 更改pip镜像源以便加快pip install 速度
-	cp -r ~/init_ubuntu/.pip ~
+function pip_install(){
+	pip install pip -U
+	pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
 }
 
 #function manual_install(){
@@ -196,8 +197,11 @@ echo "apt-get upgrade......"
 #gnome_theme
 #git_install
 #vim8_install
-tmux_install
+#tmux_install
 #tools_install
+oh_my_zsh_install
+pip_install
+
 
 echo "Sogou pinyin: if you install this, enter 'fcitx-config-gtk3' in the terminal and add sogou pinyin to input method, after reboot, it should work "
 echo "shadowsocks see README.md"
