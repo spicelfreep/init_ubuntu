@@ -1,6 +1,6 @@
 #!/bin/bash
 # author : Jackie.xiao
-# description : init your ubuntu 16.04 
+# description : init your ubuntu 16.04
 # Usege : you should run in your own user (not in root for convenient) as "sudo bash init_ubuntu.sh | tee init_ubuntu.log"
 
 set -o nounset # avoid quote variable which not defined
@@ -81,29 +81,20 @@ function vim_install(){
 		echo -e "\033[32m you have install vim \033[0m"
 		echo  "Do you want to set your vim to recommand setting?[y\n]"
 		read judge
-		if [ ${judge} = "y" ];then
-			echo "you choose yes"
-			sudo apt-get -y install vim-gtk 
-			cp ~/init_ubuntu/.vimrc ~/.vimrc
-			sudo rm -rf ~/.vim
-			mkdir -p ~/.vim/bundle
-			mkdir -p ~/.vim/undo
-			mkdir -p ~/.vim
-			cp -r mysnippets ~/.vim
-			git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-			vim +PluginInstall +qall
-		else
-			echo "you choose no"
+		if [ ${judge} -ne "y" ];then
+			echo "You choose no"
+			return 0
 		fi
-	else
 		echo -e "\033[32m install vim \033[0m"
-		# install vim 
+		# install vim
 		sudo apt-get -y install vim
-		sudo apt-get -y install vim-gtk 
-		# 安装jedi插件
-		sudp apt-get -y install pip3
-		pip3 install jedi
+		sudo apt-get -y install vim-gtk
 		cp ~/init_ubuntu/.vimrc ~/.vimrc
+		# 安装flake8 以支持插件https://github.com/nvie/vim-flake8 -代码风格检查
+		pip install flake8
+		# 安装yapf 以支持代码格式化
+		pip install yapf
+		# 复制snippets
 		mkdir -p ~/.vim
 		cp -r mysnippets ~/.vim
 		mkdir -p ~/.vim/bundle
@@ -120,7 +111,7 @@ function tools_install(){
 	sudo apt install -y htop
 	#sudo apt-get install p7zip-full # support compress 7z file, usage`7z x file.7z`
 	# xournal is a pdf reader which could add note easily
-	#sudo apt-get install xournal 
+	#sudo apt-get install xournal
 	#sudo apt-get install flashplugin-installer
 	sudo apt-get install meld
 	sudo apt-get install tree
@@ -156,7 +147,7 @@ function tmux_install(){
 	sudo apt-get install xclip
 	# 以便能够在电脑重启之后重新开启之前的tmux
 	git clone https://github.com/tmux-plugins/tmux-resurrect ~/.tmux/tmux-resurrect
-    	tmux source-file ~/.tmux.conf
+	tmux source-file ~/.tmux.conf
 	# 使用方法：
 	# 保存状态：
 	#    prefix + Ctrl-s
@@ -191,40 +182,41 @@ function pip_update_source(){
 	pip install pip -U
 	pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
 
-function change_ubuntu_apt_source(){
-	Codename=$( (lsb_release -a)|awk '{print $2}'|tail -n 1 ) 
-	sudo echo "
-	deb http://mirrors.aliyun.com/ubuntu/ $Codename main multiverse restricted universe 
-	deb http://mirrors.aliyun.com/ubuntu/ $Codename-backports main multiverse restricted universe
-	deb http://mirrors.aliyun.com/ubuntu/ $Codename-proposed main multiverse restricted universe
-	deb http://mirrors.aliyun.com/ubuntu/ $Codename-security main multiverse restricted universe
-	deb http://mirrors.aliyun.com/ubuntu/ $Codename-updates main multiverse restricted universe
-	deb-src http://mirrors.aliyun.com/ubuntu/ $Codename main multiverse restricted universe
-	deb-src http://mirrors.aliyun.com/ubuntu/ $Codename-backports main multiverse restricted universe
-	deb-src http://mirrors.aliyun.com/ubuntu/ $Codename-proposed main multiverse restricted universe
-	deb-src http://mirrors.aliyun.com/ubuntu/ $Codename-security main multiverse restricted universe
-	deb-src http://mirrors.aliyun.com/ubuntu/ $Codename-updates main multiverse restricted universe
-	">sources.list
-	sudo apt update
-}
+	function change_ubuntu_apt_source(){
+		Codename=$( (lsb_release -a)|awk '{print $2}'|tail -n 1 )
+		sudo echo "
+		deb http://mirrors.aliyun.com/ubuntu/ $Codename main multiverse restricted universe
+		deb http://mirrors.aliyun.com/ubuntu/ $Codename-backports main multiverse restricted universe
+		deb http://mirrors.aliyun.com/ubuntu/ $Codename-proposed main multiverse restricted universe
+		deb http://mirrors.aliyun.com/ubuntu/ $Codename-security main multiverse restricted universe
+		deb http://mirrors.aliyun.com/ubuntu/ $Codename-updates main multiverse restricted universe
+		deb-src http://mirrors.aliyun.com/ubuntu/ $Codename main multiverse restricted universe
+		deb-src http://mirrors.aliyun.com/ubuntu/ $Codename-backports main multiverse restricted universe
+		deb-src http://mirrors.aliyun.com/ubuntu/ $Codename-proposed main multiverse restricted universe
+		deb-src http://mirrors.aliyun.com/ubuntu/ $Codename-security main multiverse restricted universe
+		deb-src http://mirrors.aliyun.com/ubuntu/ $Codename-updates main multiverse restricted universe
+		">sources.list
+		sudo apt update
+	}
 #function manual_install(){
 #	# Attention ! You should manally install !
 #	# (1) Jupyter notebook extensions
 #	# (2) jump out of the GFW
-#	# (3) tmux and add .tmux.conf 
+#	# (3) tmux and add .tmux.conf
 #}
 
 echo -e "\033[44;37;5m-----Step 1: Basic applicaiton installi-----------------------------\033[0m"
 echo "apt-get update......"
-# sudo apt-get -y update > /dev/null #update apt source 
-#sudo apt-get -y update 
+# sudo apt-get -y update > /dev/null #update apt source
+#sudo apt-get -y update
 echo "apt-get upgrade......"
-#sudo apt-get -y upgrade > /dev/null  #update the app that have been installed 
+#sudo apt-get -y upgrade > /dev/null  #update the app that have been installed
 #echo "apt-get dist-upgrade......"
 #sudo apt-get -y dist-upgrade > /dev/null #force the installation of packages's new dependencies
 
 
 # -----------MAIN PART-----------
+pip_update_source
 #gnome_theme
 #git_install
 #vim_install
@@ -232,7 +224,6 @@ echo "apt-get upgrade......"
 #tmux_install
 #tools_install
 oh_my_zsh_install
-pip_install
 #oh_my_zsh_install
 change_ubuntu_apt_source
 

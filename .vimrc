@@ -19,7 +19,7 @@ set nocompatible     " 去掉vi的一致性
 set laststatus=2     " 命令行为2行
 set nu               " 设置显示行号
 set mouse=a          " 启用鼠标
-set relativenumber   " 设置相对行号 
+set relativenumber   " 设置相对行号
 set hlsearch         " 高亮搜索结果
 set ignorecase       " 搜索时忽略大小写
 set cursorline       " 突出显示当前行：在当前行下显示横线，方便确认位置
@@ -29,7 +29,7 @@ set showmatch        " 显示匹配的括号
 set smartcase        " 输入有大写的英文字母时，变成大小写敏感
 set incsearch        " 搜索时自动匹配候选对象
 "set background=dark  " 设置背景颜色
-" ------python pep8 indent---------------- 
+" ------python pep8 indent----------------
 au BufNewFile,BufRead *.py
 \ set textwidth=79  " lines longer than 79 columns will be broken
 \ set shiftwidth=4  " operation >> indents 4 columns; << unindents 4 columns
@@ -48,50 +48,54 @@ au BufNewFile,BufRead *.js,*.html,*.css,*.vue
 
 " ------------保存文件后依然能undo-----注意你首先需要创建一个文件夹 $HOME/.vim/undo-----
 if has('persistent_undo')      "check if your vim version supports it
-  set undofile                 "turn on the feature  
-  set undodir=$HOME/.vim/undo  "directory where the undo files will be stored
-  endif  
+	set undofile                 "turn on the feature
+	set undodir=$HOME/.vim/undo  "directory where the undo files will be stored
+endif
 
 " --------------记住上一次修改位置----------
 " Uncomment the following to have Vim jump to the last position when
 " reopening a file
 if has("autocmd")
-  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+	au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 
 filetype off                     " Vundle 插件required
 
 " -------------------Vundle设置----------------------------
- " set the runtime path to include Vundle and initialize
+" set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#rc()
-    " alternatively, pass a path where Vundle should install plugins
-    "let path = '~/some/path/here'
-    "call vundle#rc(path)
+" alternatively, pass a path where Vundle should install plugins
+"let path = '~/some/path/here'
+"call vundle#rc(path)
 
-    " let Vundle manage Vundle, required
+" let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
 " ------------vim 插件推荐--------------
 "  Ie would be better to manually instal YouCompleteMe and python-mode plugin
 "Plugin 'vim-syntastic/syntastic'        " 自动检查语法错误-但这个感觉不大好，比ale要慢
 Plugin 'w0rp/ale'                        "语法检查，记得vim version >8.0
-Plugin 'bling/vim-airline'               "让vim下面的信息条更好看
+Plugin 'bling/vim-airline'               "让vim下面的信息条更好看 这个比Powerline更好
 Plugin 'flazz/vim-colorschemes'          "vim schemes颜色主题
-"Plugin 'nvie/vim-flake8'                 "PEP8 checking
+Plugin 'nvie/vim-flake8'                 "PEP8 checking 和语法检查 按F7即可
 Plugin 'scrooloose/nerdtree'             "browse file directory in vim
-"Plugin 'scrooloose/nerdcommenter'        " quick comment using <leader>ci 
+"Plugin 'scrooloose/nerdcommenter'        " quick comment using <leader>ci
 Plugin 'skywind3000/asyncrun.vim'        "在文件内执行Python代码
 Plugin 'Yggdroot/indentLine'             "用|来展示缩进对齐
 Plugin 'jiangmiao/auto-pairs'            "自动添加对应的括号
 Plugin 'kien/ctrlp.vim'                  " ctrl + p to fuzzy search file in vim
-"Plugin 'tell-k/vim-autopep8'             " 输入:Autopep8 就可以自动格式化python代码
+"Plugin 'tell-k/vim-autopep8'             " 输入:Autopep8 就可以自动格式化python代码 ，但是这个不如vim-autoformat
+Plugin 'Chiel92/vim-autoformat'          " 更好的代码规范化，支持多种语言，首先你需要根据官网下载不同语言对应的依赖
+" 对于python 使用pip install yapf
 
 "Plugin 'python-mode/python-mode'         " python ide help doc see :help python-mode
 "Plugin 'posva/vim-vue'                   "vue.js syntax highlight
 "Plugin 'plasticboy/vim-markdown'         "让vim支持markdown语法的高亮
 "Plugin 'tmhedberg/SimpylFold'            " 简单快速折叠
 Plugin 'Valloric/YouCompleteMe'          "自动补全插件，杀手级插件
+"Plugin 'maralla/completor.vim'
+"代替YouCompleteMe的选择，需要vim8，它兼容了ultisnips
 Plugin 'SirVer/ultisnips'                "vim snippets engine
 Plugin 'honza/vim-snippets'              " Snippets are separated from the engine. Add this if you want them:
 "Plugin 'ervandew/supertab'               "解决ultisnips和YouComplete冲突问题，但是其实我还不确定具体的用处？
@@ -104,7 +108,7 @@ Plugin 'honza/vim-snippets'              " Snippets are separated from the engin
 " --------------vim snippet setting -----------------------
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 "let g:UltiSnipsExpandTrigger="<tab>"
-" default snippet dir is  ~/.vim/bundle/vim-snippets/UltiSnips/  
+" default snippet dir is  ~/.vim/bundle/vim-snippets/UltiSnips/
 " my snippets dir  is  ~/.vim/mysnippets
 let g:UltiSnipsExpandTrigger="<c-o>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
@@ -113,6 +117,26 @@ let g:UltiSnipsSnippetDirectories=["UltiSnips","mysnippets"]
 
 " If you want :UltiSnipsEdit to split your window.
 " let g:UltiSnipsEditSplit="vertical"
+" ----------------auto-format设置------------
+noremap <F6> :Autoformat<CR>       "F6格式化代码
+au BufWrite *.py :Autoformat          "保存文件的时候自动格式化，去掉py则对所有文件生效
+let g:formatter_yapf_style='pep8'  " 或者其他值，比如 google facebook chromium
+let g:autoformat_verbosemode=1
+" ----------------flake8 设置-----------------
+" If you want to check every time you write a file
+" autocmd BufWritePost *.py call flake8#Flake8()
+" Change shortcut to F3 default is F7 
+" autocmd FileType python map <buffer> <F3> :call flake8#Flake8()<CR>
+let g:flake8_show_in_file=0        "在vim行的开头显示
+let g:flake8_show_in_gutter=1      "在vim沟槽中显示
+let g:flake8_show_quickfix=1       " 是否显示quickfix
+let g:flake8_quickfix_height=7
+let g:flake8_quickfix_location="topleft" "quickfix在左上角
+let g:flake8_error_marker='EE'     " set error marker to 'EE'
+let g:flake8_warning_marker='WW'   " set warning marker to 'WW'
+let g:flake8_pyflake_marker=''     " disable PyFlakes warnings
+let g:flake8_complexity_marker=''  " disable McCabe complexity warnings
+let g:flake8_naming_marker=''      " disable naming warnings
 " ----------------leader 设置 -----------------
 " nnoremap <leader>d dd
 
@@ -146,11 +170,11 @@ let g:indentLine_char='┆'        "缩进指示线，这个对于python很有�
 let g:indentLine_enabled = 1     "启用缩进指示线
 
 " --------------python ide----------------
-let g:pymode_python = 'python3' 
+let g:pymode_python = 'python3'
 let g:pymode_syntax_space_errors = 0
 " use python3 syntax checking
- 
-" 
+
+"
 "----------注释comment-------nerdcommenter
 map <C-l> <leader>ci
 "map <C-l> <leader>ci<CR>  "同时跳到下一行
@@ -183,18 +207,18 @@ nnoremap <F10> :call asyncrun#quickfix_toggle(6)<cr>"
 " "
 
 function! s:compile_and_run()
-    exec 'w'
-    if &filetype == 'c'
-        exec "AsyncRun! gcc % -o %<; time ./%<"
-    elseif &filetype == 'cpp'
-       exec "AsyncRun! g++ -std=c++11 % -o %<; time ./%<"
-    elseif &filetype == 'java'
-       exec "AsyncRun! javac %; time java %<"
-    elseif &filetype == 'sh'
-       exec "AsyncRun! time bash %"
-    elseif &filetype == 'python'
-       exec "AsyncRun! time python %"
-    endif
+	exec 'w'
+	if &filetype == 'c'
+		exec "AsyncRun! gcc % -o %<; time ./%<"
+	elseif &filetype == 'cpp'
+		exec "AsyncRun! g++ -std=c++11 % -o %<; time ./%<"
+	elseif &filetype == 'java'
+		exec "AsyncRun! javac %; time java %<"
+	elseif &filetype == 'sh'
+		exec "AsyncRun! time bash %"
+	elseif &filetype == 'python'
+		exec "AsyncRun! time python %"
+	endif
 endfunction
 " augroup SPACEVIM_ASYNCRUN
 "     autocmd!
@@ -207,36 +231,36 @@ let g:asyncrun_open = 15
 
 " ------vundle 必要设置-----------
 filetype plugin indent on     " required
-    " To ignore plugin indent changes, instead use:
-    "filetype plugin on
-    "
-    " Brief help
-    " :PluginList          - list configured plugins
-    " :PluginInstall(!)    - install (update) plugins
-    " :PluginSearch(!) foo - search (or refresh cache first) for foo
-    " :PluginClean(!)      - confirm (or auto-approve) removal of unused plugins
-    "
-    " see :h vundle for more details or wiki for FAQ
-    " NOTE: comments after Plugin commands are not allowed.
-    " Put your stuff after this line
-    "
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList          - list configured plugins
+" :PluginInstall(!)    - install (update) plugins
+" :PluginSearch(!) foo - search (or refresh cache first) for foo
+" :PluginClean(!)      - confirm (or auto-approve) removal of unused plugins
+"
+" see :h vundle for more details or wiki for FAQ
+" NOTE: comments after Plugin commands are not allowed.
+" Put your stuff after this line
+"
 " -------ubuntu下解决中文输入法返回normal环境的切换问题---------
 " ------参考链接：https://www.jianshu.com/p/d6067b47cec4-------
 let g:input_toggle = 1
 function! Fcitx2en()
-   let s:input_status = system("fcitx-remote")
-   if s:input_status == 2
-      let g:input_toggle = 1
-      let l:a = system("fcitx-remote -c")
-   endif
+	let s:input_status = system("fcitx-remote")
+	if s:input_status == 2
+		let g:input_toggle = 1
+		let l:a = system("fcitx-remote -c")
+	endif
 endfunction
 
 function! Fcitx2zh()
-   let s:input_status = system("fcitx-remote")
-   if s:input_status != 2 && g:input_toggle == 1
-      let l:a = system("fcitx-remote -o")
-      let g:input_toggle = 0
-   endif
+	let s:input_status = system("fcitx-remote")
+	if s:input_status != 2 && g:input_toggle == 1
+		let l:a = system("fcitx-remote -o")
+		let g:input_toggle = 0
+	endif
 endfunction
 
 set timeoutlen=150
