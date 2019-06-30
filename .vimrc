@@ -139,7 +139,15 @@ let g:flake8_complexity_marker=''  " disable McCabe complexity warnings
 let g:flake8_naming_marker=''      " disable naming warnings
 " ----------------leader 设置 -----------------
 " nnoremap <leader>d dd
-
+" ----------------ale 设置----------------
+"  在错误之间跳转
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
+let g:ale_sign_error = '>>'
+let g:ale_sign_warning = '--'
+"let g:ale_linters = {'python': ['flake8'], 'reStructuredText': ['rstcheck']}
+let g:ale_linters = {'python': ['yapf']}
+"let g:ale_fixers = {'python': ['remove_trailing_lines', 'trim_whitespace', 'autopep8']}
 
 " ---------------自动折叠------------------
 " Enable folding
