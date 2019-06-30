@@ -88,6 +88,8 @@ function vim_install(){
 			sudo rm -rf ~/.vim
 			mkdir -p ~/.vim/bundle
 			mkdir -p ~/.vim/undo
+			mkdir -p ~/.vim
+			cp -r mysnippets ~/.vim
 			git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 			vim +PluginInstall +qall
 		else
@@ -102,6 +104,8 @@ function vim_install(){
 		sudp apt-get -y install pip3
 		pip3 install jedi
 		cp ~/init_ubuntu/.vimrc ~/.vimrc
+		mkdir -p ~/.vim
+		cp -r mysnippets ~/.vim
 		mkdir -p ~/.vim/bundle
 		git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 		vim +PluginInstall +qall
@@ -182,8 +186,8 @@ function oh_my_zsh_install(){
 	echo -e "\033[44;37;5m --You need to copy some of your .bashrc alias and anaconda path to .zshrc to make sure everything like your original .bashrc ---\033[0m"
 }
 
-#更改pip镜像源以便加快pip install 速度
-function pip_install(){
+#更改pip镜像源以便加快pip install 速度，豆瓣的镜像源太老了，所以更改
+function pip_update_source(){
 	pip install pip -U
 	pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
 

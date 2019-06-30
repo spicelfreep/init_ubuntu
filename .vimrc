@@ -94,12 +94,20 @@ Plugin 'kien/ctrlp.vim'                  " ctrl + p to fuzzy search file in vim
 Plugin 'Valloric/YouCompleteMe'          "自动补全插件，杀手级插件
 Plugin 'SirVer/ultisnips'                "vim snippets engine
 Plugin 'honza/vim-snippets'              " Snippets are separated from the engine. Add this if you want them:
+"Plugin 'ervandew/supertab'               "解决ultisnips和YouComplete冲突问题，但是其实我还不确定具体的用处？
+" --------------vim snippet setting  兼容性设置-compatible-----------------------
+" make YCM compatible with UltiSnips (using supertab)
+" let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+" let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+" let g:SuperTabDefaultCompletionType = '<C-n>'
+"
 " --------------vim snippet setting -----------------------
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 "let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsExpandTrigger="<c-j>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsExpandTrigger="<c-o>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+let g:UltiSnipsSnippetDirectories=["UltiSnips","mysnippets"]
 
 " If you want :UltiSnipsEdit to split your window.
 " let g:UltiSnipsEditSplit="vertical"
