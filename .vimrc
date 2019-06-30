@@ -104,6 +104,8 @@ Plugin 'honza/vim-snippets'              " Snippets are separated from the engin
 " --------------vim snippet setting -----------------------
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 "let g:UltiSnipsExpandTrigger="<tab>"
+" default snippet dir is  ~/.vim/bundle/vim-snippets/UltiSnips/  
+" my snippets dir  is  ~/.vim/mysnippets
 let g:UltiSnipsExpandTrigger="<c-o>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
