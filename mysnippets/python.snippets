@@ -6,4 +6,40 @@ priority -50
 snippet file "file" b
 with open(${1:afile}, '${2:r}', encoding='utf-8') as ${3:f}:
 	lines = f.readlines()
+	for line in tqdm(lines):
+		${4:pass}
 endsnippet
+
+snippet rezh "re zh"
+r'\u4e00-\u9fa5'
+endsnippet
+
+snippet init "init function"
+	def __init__(self):
+endsnippet
+
+snippet head "python header"
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+# @Author : jackiexiao
+# @License : ${1:MIT}, see LICENSE for more details.
+# @Copyright: (c) `!v strftime('%Y')` by ${2:jackiexiao}.
+# @Time : ${3: `!v strftime("%Y-%m-%d %H:%M")`}
+# @Description :
+endsnippet
+
+snippet import "import freq use module"
+import re
+import os
+import sys
+from pathlib import Path
+import argsparse
+from tqdm import tqdm
+
+import pandas as pd
+import numpy as np
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+endsnippet
+
