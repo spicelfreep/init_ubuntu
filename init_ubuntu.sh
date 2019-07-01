@@ -107,6 +107,9 @@ function tools_install(){
 	echo -e "\033[32m install tools --tree && unrar unzip... \033[0m"
 	apt-get -y install tree > /dev/null
 	apt-get -y install unrar unzip > /dev/null
+	# https://linux.cn/article-10070-1.html ubuntu下好用的截图工具，类似QQ截图
+	# /usr/bin/flameshot gui  需要将这个命令绑定到快捷键上，例如ctrl + alt + A
+	sudo apt install flameshot 
 	#sudo apt-get install adobe-flashplugin
 	sudo apt install -y htop
 	#sudo apt-get install p7zip-full # support compress 7z file, usage`7z x file.7z`
