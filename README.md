@@ -1,5 +1,5 @@
 # 个人的Ubuntu 16.04 配置脚本与说明
-在终端输入  
+在终端输入:
 `user@user:~$  sudo bash init_ubuntu.sh`
 如果你想保存安装日志，输入  
 `user@user:~$  sudo bash init_ubuntu.sh | tee init_ubuntu.log`

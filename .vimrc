@@ -80,11 +80,12 @@ Plugin 'bling/vim-airline'               "让vim下面的信息条更好看 这�
 Plugin 'flazz/vim-colorschemes'          "vim schemes颜色主题
 Plugin 'nvie/vim-flake8'                 "PEP8 checking 和语法检查 按F7即可
 Plugin 'scrooloose/nerdtree'             "browse file directory in vim
-"Plugin 'scrooloose/nerdcommenter'        " quick comment using <leader>ci
+Plugin 'scrooloose/nerdcommenter'        " quick comment using <leader>ci 绑定快捷键为<C-l>了
 Plugin 'skywind3000/asyncrun.vim'        "在文件内执行Python代码
 Plugin 'Yggdroot/indentLine'             "用|来展示缩进对齐
 Plugin 'jiangmiao/auto-pairs'            "自动添加对应的括号
 Plugin 'kien/ctrlp.vim'                  " ctrl + p to fuzzy search file in vim
+Plugin 'majutsushi/tagbar'               " tagbar 使用F8浏览 代码中的tag
 "Plugin 'tell-k/vim-autopep8'             " 输入:Autopep8 就可以自动格式化python代码 ，但是这个不如vim-autoformat
 Plugin 'Chiel92/vim-autoformat'          " 更好的代码规范化，支持多种语言，首先你需要根据官网下载不同语言对应的依赖
 " 对于python 使用pip install yapf
@@ -117,6 +118,9 @@ let g:UltiSnipsSnippetDirectories=["UltiSnips","mysnippets"]
 
 " If you want :UltiSnipsEdit to split your window.
 " let g:UltiSnipsEditSplit="vertical"
+" ----------------tagbar------------------------
+"  绑定快捷键
+nmap <F8> :TagbarToggle<CR>
 " ----------------auto-format设置------------
 noremap <F6> :Autoformat<CR>       "F6格式化代码
 au BufWrite *.py :Autoformat          "保存文件的时候自动格式化，去掉py则对所有文件生效
