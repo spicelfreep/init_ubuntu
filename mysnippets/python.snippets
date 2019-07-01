@@ -18,7 +18,7 @@ snippet init "init function"
 	def __init__(self):
 endsnippet
 
-snippet head "python header"
+snippet head "python header" b 
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # @Author : jackiexiao
@@ -28,12 +28,11 @@ snippet head "python header"
 # @Description :
 endsnippet
 
-snippet import "import freq use module"
+snippet import "import freq use module" b
 import re
 import os
 import sys
 from pathlib import Path
-import argsparse
 from tqdm import tqdm
 
 import pandas as pd
@@ -43,3 +42,15 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 endsnippet
 
+snippet argparse "main argparse" b
+if __name__ == "__main__":
+	import argparse
+	parser = argparse.ArgumentParser()
+	parser.add_argument('infile', type=str)
+	parser.add_argument('outfile', type=str)
+	#parser.add_argument("-m", "--max_num", default=20, type=int)
+	#parser.add_argument("-d", "--with_digit", default=False, action="store_true", help="带调音节覆盖")
+	args = parser.parse_args()
+
+	main(args)
+endsnippet
