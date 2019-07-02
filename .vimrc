@@ -1,5 +1,8 @@
 " 这个vim配置参考了：https://www.jianshu.com/p/f0513d18742a/
-"
+" F5 运行代码
+" F6 格式化代码
+" F8 显示tagbar
+" <C-n> 显示文件夹目录
 "
 " 安装vim 8.0 的方法
 " sudo add-apt-repository ppa:jonathonf/vim
@@ -92,12 +95,12 @@ Plugin 'Chiel92/vim-autoformat'          " 更好的代码规范化，支持多�
 
 "Plugin 'python-mode/python-mode'         " python ide help doc see :help python-mode
 "Plugin 'posva/vim-vue'                   "vue.js syntax highlight
-"Plugin 'plasticboy/vim-markdown'         "让vim支持markdown语法的高亮
+Plugin 'plasticboy/vim-markdown'         "让vim支持markdown语法的高亮 :help fold-commands && :vert help xxx
 "Plugin 'tmhedberg/SimpylFold'            " 简单快速折叠
 Plugin 'Valloric/YouCompleteMe'          "自动补全插件，杀手级插件
 "Plugin 'maralla/completor.vim'
 "代替YouCompleteMe的选择，需要vim8，它兼容了ultisnips
-Plugin 'SirVer/ultisnips'                "vim snippets engine
+Plugin 'SirVer/ultisnips'                "vim snippets engine :vert help ultisnips
 Plugin 'honza/vim-snippets'              " Snippets are separated from the engine. Add this if you want them:
 "Plugin 'ervandew/supertab'               "解决ultisnips和YouComplete冲突问题，但是其实我还不确定具体的用处？
 " --------------vim snippet setting  兼容性设置-compatible-----------------------
@@ -123,9 +126,21 @@ let g:UltiSnipsSnippetDirectories=["UltiSnips","mysnippets"]
 nmap <F8> :TagbarToggle<CR>
 " ----------------auto-format设置------------
 noremap <F6> :Autoformat<CR>       "F6格式化代码
-au BufWrite *.py :Autoformat          "保存文件的时候自动格式化，去掉py则对所有文件生效
+"au BufWrite *.py :Autoformat          "保存文件的时候自动格式化，去掉py则对所有文件生效，因为这个处理要花点时间算了..
 let g:formatter_yapf_style='pep8'  " 或者其他值，比如 google facebook chromium
 let g:autoformat_verbosemode=1
+" ----------------markdown插件设置------------
+"  zr: reduces fold level throughout the buffer
+"  zR: opens all folds
+"  zm: increases fold level throughout the buffer
+"  zM: folds everything all the way
+"  za: open a fold your cursor is on
+"  zA: open a fold your cursor is on recursively
+"  zc: close a fold your cursor is on
+"  zC: close a fold your cursor is on recursively
+let g:vim_markdown_conceal = 0              "不隐藏markdown符号
+let g:vim_markdown_conceal_code_blocks = 0  "不隐藏代码符号
+let g:vim_markdown_toc_autofit = 1          "自动调整目录大小，:Toc 开启目录
 " ----------------flake8 设置-----------------
 " If you want to check every time you write a file
 " autocmd BufWritePost *.py call flake8#Flake8()

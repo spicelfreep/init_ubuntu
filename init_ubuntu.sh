@@ -201,6 +201,12 @@ function pip_update_source(){
 		">sources.list
 		sudo apt update
 	}
+# 更改anaconda镜像源为清华镜像源
+function conda_update_source(){
+	conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
+	conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/
+	conda config --set show_channel_urls yes
+}
 #function manual_install(){
 #	# Attention ! You should manally install !
 #	# (1) Jupyter notebook extensions
