@@ -1,6 +1,7 @@
 " 这个vim配置参考了：https://www.jianshu.com/p/f0513d18742a/
 " F5 运行代码
 " F6 格式化代码
+" F7 代码格式检查
 " F8 显示tagbar
 " <C-n> 显示文件夹目录
 "

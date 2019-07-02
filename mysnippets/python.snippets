@@ -54,3 +54,40 @@ if __name__ == "__main__":
 
 	main(args)
 endsnippet
+
+snippet logger "set logger function" b
+import logging
+
+def get_logger(logname='Main',
+		logfilename='main.log',
+		logfile=True,
+		console=True,
+		logfile_level='DEBUG',
+		console_level='INFO'):
+	"""设置logger，默认同时添加文件输出和控制台输出"""
+	logger = logging.getLogger(logname)
+	logger.setLevel('DEBUG')
+
+	formatter = logging.Formatter(
+		fmt=('[PID:%(process)d]%(asctime)s.%(msecs)03d %(filename)s'
+			'[line:%(lineno)d] '
+			'%(levelname)s %(message)s'),
+			datefmt='%Y-%m-%d %H:%M:%S',
+		)
+
+	if logfile:
+		# 添加文件输出
+		file_handler = logging.FileHandler(logfilename, 'w', 'utf-8')
+		file_handler.setFormatter(formatter)
+		file_handler.setLevel(logfile_level)
+		logger.addHandler(file_handler)
+
+	if console:
+		#  添加控制台输出
+		stream_handler = logging.StreamHandler()
+		stream_handler.setFormatter(formatter)
+		stream_handler.setLevel(console_level)
+		logger.addHandler(stream_handler)
+
+	return logger
+endsnippet
