@@ -4,6 +4,7 @@
 " F6 格式化代码
 " F7 代码格式检查(使用flake8)
 " F8 显示tagbar
+" F9 进入表格编辑模式
 " <C-n> 显示文件夹目录
 " <C-l> 注释代码
 "
@@ -111,7 +112,12 @@ Plugin 'honza/vim-snippets'              " Snippets are separated from the engin
 "-----------------------vim-table-mode-----------------------------------------
 " Use visual select and :Tableize\{pattern}  pattern default is , to tableize 
 " :TableModeToggle enter mode, or use <leader>tm
-let g:table_mode_corner='|'                "Markdown-compatible tables
+" GFW Github Markdown format
+let g:table_mode_corner='|'
+let g:table_mode_border=0
+let g:table_mode_fillchar=' '
+" Map short cut
+nmap <F9> :TableModeToggle<CR>
 " ----------------------vim-easy-align setting----------------------------------
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
