@@ -100,6 +100,7 @@ function vim_install(){
 		mkdir -p ~/.vim/bundle
 		git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 		vim +PluginInstall +qall
+		# ln -s init_ubuntu/.vimrc .vimrc  # 这样就不用每次都手动复制更新本地的.vimrc了
 	fi
 }
 #More information about vundle: https://github.com/VundleVim/Vundle.vim

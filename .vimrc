@@ -1,9 +1,11 @@
 " 这个vim配置参考了：https://www.jianshu.com/p/f0513d18742a/
+" 有不少插件的使用说明都需要看vim插件的github主页
 " F5 运行代码
 " F6 格式化代码
-" F7 代码格式检查
+" F7 代码格式检查(使用flake8)
 " F8 显示tagbar
 " <C-n> 显示文件夹目录
+" <C-l> 注释代码
 "
 " 安装vim 8.0 的方法
 " sudo add-apt-repository ppa:jonathonf/vim
@@ -101,9 +103,21 @@ Plugin 'plasticboy/vim-markdown'         "让vim支持markdown语法的高亮 :h
 Plugin 'Valloric/YouCompleteMe'          "自动补全插件，杀手级插件
 "Plugin 'maralla/completor.vim'
 "代替YouCompleteMe的选择，需要vim8，它兼容了ultisnips
+Plugin 'junegunn/vim-easy-align'         " vim 对齐文本插件
+Plugin 'dhruvasagar/vim-table-mode'      " vim表格模式，便于快速创建和编辑表格
 Plugin 'SirVer/ultisnips'                "vim snippets engine :vert help ultisnips
 Plugin 'honza/vim-snippets'              " Snippets are separated from the engine. Add this if you want them:
 "Plugin 'ervandew/supertab'               "解决ultisnips和YouComplete冲突问题，但是其实我还不确定具体的用处？
+"-----------------------vim-table-mode-----------------------------------------
+" Use visual select and :Tableize\{pattern}  pattern default is , to tableize 
+" :TableModeToggle enter mode, or use <leader>tm
+let g:table_mode_corner='|'                "Markdown-compatible tables
+" ----------------------vim-easy-align setting----------------------------------
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+"" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+
 " --------------vim snippet setting  兼容性设置-compatible-----------------------
 " make YCM compatible with UltiSnips (using supertab)
 " let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
