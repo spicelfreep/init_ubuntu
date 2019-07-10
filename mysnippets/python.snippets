@@ -4,10 +4,20 @@ priority -50
 #                            TEXTMATE SNIPPETS                            #
 ###########################################################################
 snippet file "file" b
+from tqdm import tqdm
 with open(${1:afile}, '${2:r}', encoding='utf-8') as ${3:f}:
 	lines = f.readlines()
 	for line in tqdm(lines):
 		${4:pass}
+endsnippet
+
+snippet wfile "file" b
+from tqdm import tqdm
+with open(${1:afile}, 'r', encoding='utf-8') as f,\
+	open(${2:outfile}, 'w') as wf:
+	lines = f.readlines()
+	for line in tqdm(lines):
+		wf.write(line)
 endsnippet
 
 snippet rezh "re zh"
