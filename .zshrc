@@ -8,9 +8,7 @@ export ZSH="/home/jackie/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-# 默认主题
 ZSH_THEME="robbyrussell"
-#ZSH_THEME="random"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -44,7 +42,7 @@ ZSH_THEME="robbyrussell"
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-## ENABLE_CORRECTION="true"
+# ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # COMPLETION_WAITING_DOTS="true"
@@ -70,13 +68,9 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(
-	git
-	autojump
-)
+plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
-source $ZSH/custom/plugins/incr/incr*.zsh
 
 # User configuration
 
@@ -103,8 +97,30 @@ source $ZSH/custom/plugins/incr/incr*.zsh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-#
-# autojump 
-[[ -s /home/jackie/.autojump/etc/profile.d/autojump.sh  ]] && source /home/jackie/.autojump/etc/profile.d/autojump.sh
-autoload -U compinit && compinit -u
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/jackie/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/jackie/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/jackie/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/jackie/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
 
+alias lsnum='ls -al | grep "^-" | wc -l'
+alias lsdir='ls -al | grep "^d" | wc -l'
+alias svnget='svn propget svn:externals -R'
+alias svnset='svn propset svn:externals . -F'
+alias svndelete='svn status | grep ! | awk '{print $2}' | xargs svn delete'
+
+# 设置常用的文件夹
+export ff='/home/jackie/svn/ds_utils/trunk/ds_frontend'
+export pp='/home/jackie/svn/ds_utils/trunk/ds_pinyin'
+export zh='/home/jackie/svn/corpus/NLP_data/zh'
+export ee='/home/jackie/svn/ds_utils/trunk/auto_evaluation_scripts'
+export mm='/home/jackie/svn/ds_utils/trunk/ds_models'

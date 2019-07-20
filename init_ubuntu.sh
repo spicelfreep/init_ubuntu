@@ -108,9 +108,6 @@ function tools_install(){
 	echo -e "\033[32m install tools --tree && unrar unzip... \033[0m"
 	apt-get -y install tree > /dev/null
 	apt-get -y install unrar unzip > /dev/null
-	# https://linux.cn/article-10070-1.html ubuntu下好用的截图工具，类似QQ截图
-	# /usr/bin/flameshot gui  需要将这个命令绑定到快捷键上，例如ctrl + alt + A
-	sudo apt install flameshot 
 	#sudo apt-get install adobe-flashplugin
 	sudo apt install -y htop
 	#sudo apt-get install p7zip-full # support compress 7z file, usage`7z x file.7z`
@@ -121,13 +118,6 @@ function tools_install(){
 	sudo apt-get install tree
 	#sudo apt-get install audacity
 	sudo apt install unar # 用于解决ubuntu解压window文件乱码的情况，使用unar能自动检测编码
-}
-
-function screenshot(){
-	# https://github.com/lupoDharkael/flameshot
-	sudo apt install flameshot
-	# /usr/bin/flameshot gui
-	# 可以绑定这个命令到快捷键
 }
 
 function gnome_theme(){
@@ -160,6 +150,7 @@ function tmux_install(){
 }
 
 function flameshot_install(){
+	# sudo apt install flameshot
 	# Because flameshot on ubuntu 18.04 only have 0.5 version, which is missing text feature...
 	sudo apt install g++ build-essential qt5-default qt5-qmake qttools5-dev-tools
 	sudo apt install libqt5dbus5 libqt5network5 libqt5core5a libqt5widgets5 libqt5gui5 libqt5svg5-dev
