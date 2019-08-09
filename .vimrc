@@ -96,7 +96,7 @@ Plugin 'majutsushi/tagbar'               " tagbar 使用F8浏览 代码中的tag
 "Plugin 'tell-k/vim-autopep8'             " 输入:Autopep8 就可以自动格式化python代码 ，但是这个不如vim-autoformat
 Plugin 'Chiel92/vim-autoformat'          " 更好的代码规范化，支持多种语言，首先你需要根据官网下载不同语言对应的依赖
 " 对于python 使用pip install yapf
-
+"Plugin 'ervandew/supertab'               "<C-n> <C-p>朴素的tab补全插件，没有语义分析，不想装YCM可以装这个
 "Plugin 'python-mode/python-mode'         " python ide help doc see :help python-mode
 "Plugin 'posva/vim-vue'                   "vue.js syntax highlight
 Plugin 'plasticboy/vim-markdown'         "让vim支持markdown语法的高亮 :help fold-commands && :vert help xxx
@@ -109,6 +109,8 @@ Plugin 'dhruvasagar/vim-table-mode'      " vim表格模式，便于快速创建�
 Plugin 'SirVer/ultisnips'                "vim snippets engine :vert help ultisnips
 Plugin 'honza/vim-snippets'              " Snippets are separated from the engine. Add this if you want them:
 "Plugin 'ervandew/supertab'               "解决ultisnips和YouComplete冲突问题，但是其实我还不确定具体的用处？
+" ------------------------auto-pairs--------------------------------------
+let g:AutoPairsFlyMode = 1                " Fly Mode will always force closed-pair jumping instead of inserting. only for ")", "}", "]"
 "-----------------------vim-table-mode-----------------------------------------
 " Use visual select and :Tableize\{pattern}  pattern default is , to tableize 
 " :TableModeToggle enter mode, or use <leader>tm
@@ -162,6 +164,9 @@ let g:autoformat_verbosemode=1
 let g:vim_markdown_conceal = 0              "不隐藏markdown符号
 let g:vim_markdown_conceal_code_blocks = 0  "不隐藏代码符号
 let g:vim_markdown_toc_autofit = 1          "自动调整目录大小，:Toc 开启目录
+"let g:vim_markdown_folding_style_pythonic = 1 "跟插件python-mode类似的折叠方式
+let g:vim_markdown_folding_level = 3        "折叠层级
+"let g:vim_markdown_folding_disabled = 1     "不自动折叠
 " ----------------flake8 设置-----------------
 " If you want to check every time you write a file
 " autocmd BufWritePost *.py call flake8#Flake8()

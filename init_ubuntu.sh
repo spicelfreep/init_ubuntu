@@ -216,8 +216,14 @@ function conda_update_source(){
 
 function shadowsocks_install(){
 	# 这个感觉比pip install 来的方便多
-	sudo apt install shadowsocks-libev
+	# for ubuntu 18
+	#sudo apt install shadowsocks-libev
 	# ss-local -c config.json
+	# for ubuntu 16 or 14
+	sudo apt-get install software-properties-common -y
+	sudo add-apt-repository ppa:max-c-lv/shadowsocks-libev -y
+	sudo apt-get update
+	sudo apt install shadowsocks-libev
 }
 #function manual_install(){
 #	# Attention ! You should manally install !

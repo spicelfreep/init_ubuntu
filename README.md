@@ -75,7 +75,7 @@ sudo apt-get remove typora && sudo apt-get autoremove
 
 3. 个人使用的其他软件安装
 * TxtLive === Latex用
-* Shadowsocks === 看这篇文章ubuntu配置参见这篇[文章](http://blog.csdn.net/superbfly/article/details/54950451),手机的话可以下载openWingy
+* Shadowsocks: https://github.com/FelisCatus/SwitchyOmega/wiki/GFWList
 * 翻墙之后用sudo -H pip install 这样才能安装，-H 是装在local位置
 4. ubuntu界面美化（默认在init_ubuntu里安装）
 ```
