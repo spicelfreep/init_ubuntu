@@ -89,6 +89,7 @@ Plugin 'nvie/vim-flake8'                 "PEP8 checking 和语法检查 按F7即
 Plugin 'scrooloose/nerdtree'             "browse file directory in vim
 Plugin 'scrooloose/nerdcommenter'        " quick comment using <leader>ci 绑定快捷键为<C-l>了
 Plugin 'skywind3000/asyncrun.vim'        "在文件内执行Python代码
+"Plugin 'ekalinin/Dockerfile.vim'         "高亮dockerfile文件
 Plugin 'Yggdroot/indentLine'             "用|来展示缩进对齐
 Plugin 'jiangmiao/auto-pairs'            "自动添加对应的括号
 Plugin 'kien/ctrlp.vim'                  " ctrl + p to fuzzy search file in vim
@@ -110,7 +111,7 @@ Plugin 'SirVer/ultisnips'                "vim snippets engine :vert help ultisni
 Plugin 'honza/vim-snippets'              " Snippets are separated from the engine. Add this if you want them:
 "Plugin 'ervandew/supertab'               "解决ultisnips和YouComplete冲突问题，但是其实我还不确定具体的用处？
 " ------------------------auto-pairs--------------------------------------
-let g:AutoPairsFlyMode = 1                " Fly Mode will always force closed-pair jumping instead of inserting. only for ")", "}", "]"
+let g:AutoPairsFlyMode = 0                " Fly Mode will always force closed-pair jumping instead of inserting. only for ")", "}", "]"
 "-----------------------vim-table-mode-----------------------------------------
 " Use visual select and :Tableize\{pattern}  pattern default is , to tableize 
 " :TableModeToggle enter mode, or use <leader>tm
